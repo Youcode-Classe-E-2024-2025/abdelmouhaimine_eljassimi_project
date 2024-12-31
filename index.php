@@ -16,5 +16,12 @@ switch ($action) {
             $projectModel->createProject($name, $description);
         }
     break;
-
+    case "edit_project": 
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+            $name = $_POST["name"];
+            $description = $_POST["description"];
+            $id = $_POST["id"];
+            $projectModel->editProject($name, $description,$id);
+        }
+        break;
 }

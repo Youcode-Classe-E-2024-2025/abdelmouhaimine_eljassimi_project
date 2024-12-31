@@ -20,4 +20,9 @@ class ProjectController {
         $projects = $this->projectModel->getAll();
         require 'view/project_list.php';
     }
+
+    public function editProject($name,$description,$id) {
+        $this->projectModel->update($name, $description, $id);
+        header("location: index.php");
+    }
 }
