@@ -8,4 +8,13 @@ $action = $_GET["action"]??"list";
 
 switch ($action) {
     case "list": $projectModel->showProjects(); break;
+    
+    case "create_project": 
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+            $name = $_POST["name"];
+            $description = $_POST["description"];
+            $projectModel->createProject($name, $description);
+        }
+    break;
+
 }

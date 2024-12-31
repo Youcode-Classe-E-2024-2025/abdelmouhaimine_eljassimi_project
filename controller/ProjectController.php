@@ -11,13 +11,13 @@ class ProjectController {
     }
 
 
-    public function createProject($name, $description, $deadline) {
-        $this->projectModel->create($name, $description, $deadline);
-        header("Location: /projects");
+    public function createProject($name, $description) {
+        $this->projectModel->create($name, $description);
+        header("location: index.php");
     }
 
     public function showProjects() {
         $projects = $this->projectModel->getAll();
-        include 'view/project_list.php';
+        require 'view/project_list.php';
     }
 }
