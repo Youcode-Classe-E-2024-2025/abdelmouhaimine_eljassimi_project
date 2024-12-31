@@ -80,12 +80,12 @@
                 <!-- Header -->
                 <header class="flex justify-between items-center mb-8">
                     <h1 class="text-2xl font-bold">Task Board</h1>
-                    <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg flex items-center">
+                    <a class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg flex items-center">
                         <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
                         </svg>
                         Add New Task
-                    </button>
+                    </a>
                 </header>
 
                 <!-- Kanban Board -->
@@ -96,21 +96,17 @@
                             <span class="w-3 h-3 bg-yellow-500 rounded-full mr-2"></span>
                             Todo
                         </h2>
+                        <?php $todoTasks = array_filter($tasks, function($task) { return $task['status'] === 'todo';}); ?>
                         <div class="space-y-4">
+                            <?php foreach ($todoTasks as $todoTask):?>
                             <div class="bg-gray-700 p-4 rounded-lg">
-                                <h3 class="font-medium mb-2">Research competitors</h3>
+                                <h3 class="font-medium mb-2"><?= $todoTask["title"] ?></h3>
                                 <div class="flex justify-between text-sm text-gray-400">
-                                    <span>2 days left</span>
+                                    <span><?= $todoTask["created_at"] ?></span>
                                     <span>0/3</span>
                                 </div>
                             </div>
-                            <div class="bg-gray-700 p-4 rounded-lg">
-                                <h3 class="font-medium mb-2">Brainstorm ideas</h3>
-                                <div class="flex justify-between text-sm text-gray-400">
-                                    <span>1 day left</span>
-                                    <span>0/5</span>
-                                </div>
-                            </div>
+                            <?php endforeach; ?>
                         </div>
                     </div>
 
@@ -120,71 +116,58 @@
                             <span class="w-3 h-3 bg-blue-500 rounded-full mr-2"></span>
                             Doing
                         </h2>
+                        <?php $doingTasks = array_filter($tasks, function($task) { return $task['status'] === 'doing';}); ?>
                         <div class="space-y-4">
+                            <?php foreach ($doingTasks as $doingTask):?>
                             <div class="bg-gray-700 p-4 rounded-lg">
-                                <h3 class="font-medium mb-2">Design system</h3>
+                                <h3 class="font-medium mb-2"><?= $doingTask["title"] ?></h3>
                                 <div class="flex justify-between text-sm text-gray-400">
-                                    <span>3 days left</span>
-                                    <span>2/5</span>
-                                </div>
-                            </div>
-                            <div class="bg-gray-700 p-4 rounded-lg">
-                                <h3 class="font-medium mb-2">Create wireframes</h3>
-                                <div class="flex justify-between text-sm text-gray-400">
-                                    <span>1 day left</span>
-                                    <span>3/7</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Review Column -->
-                    <div class="bg-gray-800 rounded-lg p-4">
-                        <h2 class="text-lg font-semibold mb-4 flex items-center">
-                            <span class="w-3 h-3 bg-purple-500 rounded-full mr-2"></span>
-                            Review
-                        </h2>
-                        <div class="space-y-4">
-                            <div class="bg-gray-700 p-4 rounded-lg">
-                                <h3 class="font-medium mb-2">User testing</h3>
-                                <div class="flex justify-between text-sm text-gray-400">
-                                    <span>Due today</span>
-                                    <span>1/1</span>
-                                </div>
-                            </div>
-                            <div class="bg-gray-700 p-4 rounded-lg">
-                                <h3 class="font-medium mb-2">Feedback implementation</h3>
-                                <div class="flex justify-between text-sm text-gray-400">
-                                    <span>2 days left</span>
+                                    <span><?= $doingTask["created_at"] ?></span>
                                     <span>0/3</span>
                                 </div>
                             </div>
+                            <?php endforeach; ?>
                         </div>
                     </div>
-
+                    <!-- Review Column -->
+                    <div class="bg-gray-800 rounded-lg p-4">
+                        <h2 class="text-lg font-semibold mb-4 flex items-center">
+                            <span class="w-3 h-3 bg-red-500 rounded-full mr-2"></span>
+                            Review
+                        </h2>
+                        <?php $todoTasks = array_filter($tasks, function($task) { return $task['status'] === 'review';}); ?>
+                        <div class="space-y-4">
+                            <?php foreach ($todoTasks as $todoTask):?>
+                            <div class="bg-gray-700 p-4 rounded-lg">
+                                <h3 class="font-medium mb-2"><?= $todoTask["title"] ?></h3>
+                                <div class="flex justify-between text-sm text-gray-400">
+                                    <span><?= $todoTask["created_at"] ?></span>
+                                    <span>0/3</span>
+                                </div>
+                            </div>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
                     <!-- Done Column -->
                     <div class="bg-gray-800 rounded-lg p-4">
                         <h2 class="text-lg font-semibold mb-4 flex items-center">
                             <span class="w-3 h-3 bg-green-500 rounded-full mr-2"></span>
                             Done
                         </h2>
+                        <?php $todoTasks = array_filter($tasks, function($task) { return $task['status'] === 'done';}); ?>
                         <div class="space-y-4">
+                            <?php foreach ($todoTasks as $todoTask):?>
                             <div class="bg-gray-700 p-4 rounded-lg">
-                                <h3 class="font-medium mb-2">Project setup</h3>
+                                <h3 class="font-medium mb-2"><?= $todoTask["title"] ?></h3>
                                 <div class="flex justify-between text-sm text-gray-400">
-                                    <span>Completed</span>
-                                    <span>5/5</span>
+                                    <span><?= $todoTask["created_at"] ?></span>
+                                    <span>0/3</span>
                                 </div>
                             </div>
-                            <div class="bg-gray-700 p-4 rounded-lg">
-                                <h3 class="font-medium mb-2">Initial mockups</h3>
-                                <div class="flex justify-between text-sm text-gray-400">
-                                    <span>Completed</span>
-                                    <span>3/3</span>
-                                </div>
-                            </div>
+                            <?php endforeach; ?>
                         </div>
                     </div>
+
                 </div>
             </div>
         </main>
