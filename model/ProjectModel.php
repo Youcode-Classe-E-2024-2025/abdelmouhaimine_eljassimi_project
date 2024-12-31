@@ -16,13 +16,22 @@ class Project {
         $this->pdo = $database->getConnection();
     }
 
-    public function create($name, $description) {
+    public function create($name, $description,$user_id) {
         $sql = "INSERT INTO projects (name, description) VALUES (:name, :description)";
         $stmt = $this->pdo->prepare($sql);
-        return $stmt->execute([
+        $stmt->execute([
             ':name' => htmlspecialchars($name) ,
             ':description' => htmlspecialchars($description),
         ]);
+        
+        $projectId = $this->pdo->lastInsertId();
+        $stmt = $this->pdo->prepare("INSERT INTO project_members (project_id, user_id) VALUES (:project_id, :user_id)");
+            foreach ($user_id as $userId) {
+                $stmt->execute([
+                    ':project_id' =>  $projectId,
+                    ':user_id' => $userId,
+                ]);
+            }
     }
 
     public function getAll() {
@@ -45,5 +54,4 @@ class Project {
         $stmt->execute();
     }
 }
-
 ?>

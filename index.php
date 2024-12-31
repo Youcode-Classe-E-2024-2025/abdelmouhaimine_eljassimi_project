@@ -1,21 +1,29 @@
 <?php
 require_once "config.php";
 require_once "controller/ProjectController.php";
+require_once "controller/UserController.php";
+
 
 $projectModel = new ProjectController();
+$userModel = new UserController();
+
 
 $action = $_GET["action"]??"list";
 
 switch ($action) {
     case "list": $projectModel->showProjects(); break;
-    
+
+    case "create": $userModel->AfficheUsers(); break;
+
     case "create_project": 
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
             $name = $_POST["name"];
             $description = $_POST["description"];
-            $projectModel->createProject($name, $description);
+            $users = $_POST["users"];
+            $projectModel->createProject($name, $description,$users);
         }
     break;
+
     case "edit_project": 
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
             $name = $_POST["name"];
@@ -24,6 +32,7 @@ switch ($action) {
             $projectModel->editProject($name, $description,$id);
         }
         break;
+
     case "delete_project":
         $id= $_GET["id"];
         $projectModel->deleteProject($id);

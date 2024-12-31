@@ -11,8 +11,8 @@ class ProjectController {
     }
 
 
-    public function createProject($name, $description) {
-        $this->projectModel->create($name, $description);
+    public function createProject($name, $description,$users) {
+        $this->projectModel->create($name, $description,$users);
         header("location: index.php");
     }
 
