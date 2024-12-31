@@ -9,7 +9,7 @@
 <body class="bg-gray-900 min-h-screen flex items-center justify-center">
   <div class="bg-white shadow-md rounded-lg p-6 w-full max-w-lg">
     <h1 class="text-2xl font-bold text-gray-800 mb-4">Create a New Project</h1>
-    <form action="create_project.php" method="POST">
+    <form action="http://localhost/abdelmouhaimine_eljassimi_project/index.php?action=create_project" method="POST">
 
       <div class="mb-4">
         <label for="name" class="block text-gray-700 font-medium mb-2">Project Name</label>
@@ -26,14 +26,6 @@
                   placeholder="Describe your project" required></textarea>
       </div>
 
-
-      <div class="mb-4">
-        <label for="deadline" class="block text-gray-700 font-medium mb-2">Deadline</label>
-        <input type="date" id="deadline" name="deadline" 
-               class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none">
-      </div>
-
-      
       <div class="flex justify-end">
         <button type="submit" 
                 class="bg-blue-500 text-white font-medium px-4 py-2 rounded-lg hover:bg-blue-600 transition">

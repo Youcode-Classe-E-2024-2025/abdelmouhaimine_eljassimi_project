@@ -58,8 +58,8 @@
       <div class="bg-white shadow-md rounded-lg p-6 flex flex-col justify-between">
         <div>
           <h2 class="text-xl font-bold text-gray-800 mb-2"><?= $project["name"]?></h2>
-          <p class="text-gray-600 mb-4"><?= $project["description"]?>/p>
-          <p class="text-sm text-gray-500">Deadline: <?= $project["created_at"]?></p>
+          <p class="text-gray-600 mb-4"><?= $project["description"]?> </p>
+          <p class="text-sm text-gray-500">Created at: <?= $project["created_at"]?></p>
         </div>
         <div class="mt-4 flex space-x-2">
           <a href="#" class="bg-green-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-green-600 transition"> View </a>

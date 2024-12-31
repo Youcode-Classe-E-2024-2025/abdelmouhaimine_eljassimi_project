@@ -7,7 +7,6 @@ class Project {
     private $pdo;
     private $name;
     private $description;
-    private $deadline;
 
 
 
@@ -16,13 +15,12 @@ class Project {
         $this->pdo = $database->getConnection();
     }
 
-    public function create($name, $description, $deadline) {
-        $sql = "INSERT INTO projects (name, description, deadline) VALUES (:name, :description, :deadline)";
+    public function create($name, $description) {
+        $sql = "INSERT INTO projects (name, description) VALUES (:name, :description)";
         $stmt = $this->pdo->prepare($sql);
         return $stmt->execute([
             ':name' => $name,
             ':description' => $description,
-            ':deadline' => $deadline
         ]);
     }
 
