@@ -24,4 +24,8 @@ switch ($action) {
             $projectModel->editProject($name, $description,$id);
         }
         break;
+    case "delete_project":
+        $id= $_GET["id"];
+        $projectModel->deleteProject($id);
+        break;
 }

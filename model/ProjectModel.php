@@ -20,8 +20,8 @@ class Project {
         $sql = "INSERT INTO projects (name, description) VALUES (:name, :description)";
         $stmt = $this->pdo->prepare($sql);
         return $stmt->execute([
-            ':name' => $name,
-            ':description' => $description,
+            ':name' => htmlspecialchars($name) ,
+            ':description' => htmlspecialchars($description),
         ]);
     }
 
@@ -34,9 +34,9 @@ class Project {
         $sql = "UPDATE projects SET name = :name, description = :description WHERE id = :id";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([
-            ':name' => $name,
-            ':description' => $description,
-            ':id' => $id
+            ':name' => htmlspecialchars($name) ,
+            ':description' => htmlspecialchars($description),
+            ':id' => htmlspecialchars($id)
         ]);
     }
     public function delete($id) {

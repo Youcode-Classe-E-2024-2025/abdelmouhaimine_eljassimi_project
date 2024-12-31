@@ -25,4 +25,9 @@ class ProjectController {
         $this->projectModel->update($name, $description, $id);
         header("location: index.php");
     }
+
+    public function deleteProject($id) {
+        $this->projectModel->delete($id);
+        header("location: index.php");
+    }
 }
