@@ -48,7 +48,7 @@
     <!-- Page Header -->
     <div class="flex items-center justify-between mb-6">
       <h1 class="text-3xl font-bold text-white">Projects</h1>
-      <a href="view/project_form.php"
+      <a href="view/project_create_form.php"
          class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition"> + Add New Project  </a>
     </div>
 
@@ -63,8 +63,8 @@
         </div>
         <div class="mt-4 flex space-x-2">
           <a href="#" class="bg-green-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-green-600 transition"> View </a>
-          <a href="#" class="bg-blue-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-blue-600 transition"> Edit </a>
-          <a href="#" class="bg-red-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-red-600 transition"> Delete </a>
+          <a href="view/project_edit_form.php?id=<?=$project["id"]?>" class="bg-blue-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-blue-600 transition"> Edit </a>
+          <a href="?action=delete&id=<?=$project["id"]?>" class="bg-red-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-red-600 transition"> Delete </a>
         </div>
       </div>
       <?php endforeach; ?>
