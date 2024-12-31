@@ -2,10 +2,12 @@
 require_once "config.php";
 require_once "controller/ProjectController.php";
 require_once "controller/UserController.php";
+require_once "controller/TaskController.php";
 
 
 $projectModel = new ProjectController();
 $userModel = new UserController();
+$TaskModel = new TaskController();
 
 
 $action = $_GET["action"]??"list";
@@ -36,5 +38,9 @@ switch ($action) {
     case "delete_project":
         $id= $_GET["id"];
         $projectModel->deleteProject($id);
+        break;
+    case "kanban":
+        $id = $_GET["id"];
+        $TaskModel->showProjects($id);
         break;
 }

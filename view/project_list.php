@@ -62,7 +62,7 @@
           <p class="text-sm text-gray-500">Created at: <?= $project["created_at"]?></p>
         </div>
         <div class="mt-4 flex space-x-2">
-          <a href="#" class="bg-green-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-green-600 transition"> View </a>
+          <a href="?action=kanban&id=<?=$project["id"]?>" class="bg-green-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-green-600 transition"> View </a>
           <a href="view/project_edit_form.php?id=<?=$project["id"]?>" class="bg-blue-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-blue-600 transition"> Edit </a>
           <a href="?action=delete_project&id=<?=$project["id"]?>" class="bg-red-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-red-600 transition"> Delete </a>
         </div>

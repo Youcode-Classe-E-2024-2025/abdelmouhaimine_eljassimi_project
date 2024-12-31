@@ -3,33 +3,32 @@
 require_once "config.php";
 class Task {
     private $pdo;
-    private $name;
+    private $title;
     private $description;
-    private $assignedTo;
+    private $status;
+    private $due_date;
 
 
 
-    public function __construct($name,$status,$assignedTo) {
-        $this->name = $name;
-        $this->description = $status;
-        $this->deadline = $assignedTo;
+    public function __construct() {
         $database = new Database();                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
         $this->pdo = $database->getConnection();
     }
 
     // Save task to the database
-    public function create($projectId, $name, $status, $assignedTo) {
-        $sql = "INSERT INTO tasks (project_id, name, status, assigned_to) VALUES (:project_id, :name, :status, :assigned_to)";
+    public function create($projectId, $title,$description,$category_id, $status, $duedate) {
+        $sql = "INSERT INTO tasks (project_id, title, status, description,category_id,duedate) VALUES (:project_id, :title, :status, :description,:category_id,:duedate)";
         $stmt = $this->pdo->prepare($sql);
-        return $stmt->execute([
+        $stmt->execute([
             ':project_id' => $projectId,
-            ':name' => $name,
-            ':status' => $status,
-            ':assigned_to' => $assignedTo
+            ':name' => $title,
+            'status'=> $status,
+            'description'=> $description,
+            'category_id'=> $category_id,
+            'duedate'=> $duedate
         ]);
     }
 
-    // Get tasks by project ID
     public function getByProjectId($projectId) {
         $sql = "SELECT * FROM tasks WHERE project_id = :project_id";
         $stmt = $this->pdo->prepare($sql);
