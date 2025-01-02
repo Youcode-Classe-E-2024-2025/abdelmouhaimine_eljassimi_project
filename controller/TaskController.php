@@ -12,8 +12,8 @@ class TaskController {
 
     }
 
-    public function createTask($projectId, $title,$description,$category_id, $status, $duedate) {
-        $this->taskModel->create($projectId, $title,$description,$category_id, $status, $duedate);
+    public function createTask($projectId, $title,$description,$category_id, $status, $duedate,$user_id) {
+        $this->taskModel->create($projectId, $title,$description,$category_id, $status, $duedate,$user_id);
         header("location: index.php?action=kanban&id=$projectId");
     }
 
