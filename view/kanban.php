@@ -99,7 +99,10 @@
                             <div class="bg-gray-700 p-4 rounded-lg">
                                 <div class="flex justify-between">
                                     <h3 class="font-medium mb-2"><?= $todoTask["title"] ?></h3>
-                                    <a href="?action=deleteTask&idTask=<?=$todoTask["id"]?>&idProject=<?=$id?>"><i class='bx bx-trash text-red-600' ></i></a>
+                                    <div>
+                                        <a href="?action=deleteTask&idTask=<?=$todoTask["id"]?>&idProject=<?=$id?>"><i class='bx bx-trash text-red-600' ></i></a>
+                                        <a href="view/task_edit_form.php?idTask=<?=$todoTask["id"]?>&idProject=<?=$id?>"><i class='bx bxs-edit text-blue-600'></i></a>
+                                    </div>
                                 </div>
                                 <div class="flex justify-between text-sm text-gray-400">
                                     <span>Limit Date: <?= $todoTask["due_date"] ?></span>
@@ -121,8 +124,11 @@
                             <div class="bg-gray-700 p-4 rounded-lg">
                             <div class="flex justify-between">
                                     <h3 class="font-medium mb-2"><?= $doingTask["title"] ?></h3>
-                                    <a href="?action=deleteTask&idTask=<?=$doingTask["id"]?>&idProject=<?=$id?>"><i class='bx bx-trash text-red-600' ></i></a>
-                                </div>
+                                    <div>
+                                        <a href="?action=deleteTask&idTask=<?=$doingTask["id"]?>&idProject=<?=$id?>"><i class='bx bx-trash text-red-600' ></i></a>
+                                        <a href="view/task_edit_form.php?idTask=<?=$doingTask["id"]?>&idProject=<?=$id?>"><i class='bx bxs-edit text-blue-600'></i></a>
+                                    </div>                                
+                            </div>
                                 <div class="flex justify-between text-sm text-gray-400">
                                     <span>Limit Date: <?= $doingTask["due_date"] ?></span>
                                 </div>
@@ -142,8 +148,10 @@
                             <div class="bg-gray-700 p-4 rounded-lg">
                                 <div class="flex justify-between">
                                     <h3 class="font-medium mb-2"><?= $todoTask["title"] ?></h3>
-                                    <a href="?action=deleteTask&idTask=<?=$todoTask["id"]?>&idProject=<?=$id?>"><i class='bx bx-trash text-red-600' ></i></a>
-                                </div>
+                                    <div>
+                                        <a href="?action=deleteTask&idTask=<?=$todoTask["id"]?>&idProject=<?=$id?>"><i class='bx bx-trash text-red-600' ></i></a>
+                                        <a href="view/task_edit_form.php?idTask=<?=$todoTask["id"]?>&idProject=<?=$id?>"><i class='bx bxs-edit text-blue-600'></i></a>
+                                    </div>                                </div>
                                 <div class="flex justify-between text-sm text-gray-400">
                                     <span>Limit Date: <?= $todoTask["due_date"] ?></span>
                                 </div>
@@ -163,7 +171,10 @@
                             <div class="bg-gray-700 p-4 rounded-lg">
                                 <div class="flex justify-between">
                                     <h3 class="font-medium mb-2"><?= $todoTask["title"] ?></h3>
-                                    <a href="?action=deleteTask&idTask=<?=$todoTask["id"]?>&idProject=<?=$id?>"><i class='bx bx-trash text-red-600' ></i></a>
+                                    <div>
+                                        <a href="?action=deleteTask&idTask=<?=$todoTask["id"]?>&idProject=<?=$id?>"><i class='bx bx-trash text-red-600' ></i></a>
+                                        <a href="view/task_edit_form.php?idTask=<?=$todoTask["id"]?>&idProject=<?=$id?>"><i class='bx bxs-edit text-blue-600'></i></a>
+                                    </div>                                
                                 </div>
                                 <div class="flex justify-between text-sm text-gray-400">
                                     <span>Limit Date: <?= $todoTask["due_date"] ?></span>

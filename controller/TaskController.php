@@ -38,4 +38,8 @@ class TaskController {
         $this->taskModel->delete($idTask);
         header("location: index.php?action=kanban&id=". $idProject);
     }
+    public function EditTask($idProject,$idTask,$name, $description,$status){
+        $this->taskModel->edit($idTask,$name,$description,$status);
+        header("location: index.php?action=kanban&id=". $idProject);
+    }
 }

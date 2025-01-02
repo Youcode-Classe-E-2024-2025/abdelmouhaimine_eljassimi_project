@@ -61,5 +61,20 @@ switch ($action) {
                 $idTask = $_GET["idTask"];
                 $idProject = $_GET["idProject"];
                 $TaskModel->deleteTask($idTask, $idProject);
-        
+        break;
+        case "editForm": 
+            $idTask = $_GET["idTask"];
+            $idProject = $_GET["idProject"];
+            $TaskModel->editFrom($idTask, $idProject);
+        break;
+        case "EditTask":
+            if($_SERVER['REQUEST_METHOD'] === 'POST'){
+                $name = $_POST["name"];
+                $idTask = $_POST["taskid"];
+                $idProject = $_POST["projectid"];
+                $description = $_POST["description"];
+                $status = $_POST["status"];
+            }
+            $TaskModel->EditTask($idProject,$idTask,$name, $description, $status);
+
 }
