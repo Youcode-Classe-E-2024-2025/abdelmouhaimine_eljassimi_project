@@ -43,4 +43,15 @@ class Task {
             ':id' => $id
         ]);
     }
+    public function edit($idtask, $title, $description, $status) {
+        $sql = 'UPDATE tasks SET title = :title, description = :description, status = :status WHERE id = :idtask';
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([
+            ':idtask' => $idtask, 
+            ':title' => $title,
+            ':status' => $status,
+            ':description' => $description
+        ]);
+    }
+    
 }
