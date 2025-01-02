@@ -17,15 +17,15 @@ class Task {
 
     // Save task to the database
     public function create($projectId, $title,$description,$category_id, $status, $duedate) {
-        $sql = "INSERT INTO tasks (project_id, title, status, description,category_id,duedate) VALUES (:project_id, :title, :status, :description,:category_id,:duedate)";
+        $sql = "INSERT INTO tasks (project_id, title, status, description,category_id,due_date) VALUES (:project_id, :title, :status, :description,:category_id,:due_date)";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([
             ':project_id' => $projectId,
-            ':name' => $title,
+            ':title' => $title,
             'status'=> $status,
             'description'=> $description,
             'category_id'=> $category_id,
-            'duedate'=> $duedate
+            'due_date'=> $duedate
         ]);
     }
 
@@ -34,5 +34,13 @@ class Task {
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([':project_id' => $projectId]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function delete($id){
+        $sql = 'DELETE FROM tasks WHERE id=:id';
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([
+            ':id' => $id
+        ]);
     }
 }
