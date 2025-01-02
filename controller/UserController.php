@@ -31,6 +31,18 @@ class UserController {
         }
     }
 
+    public function signupForm(){
+        require 'view/signup.php';
+    }
+
+    public function signup($name, $email, $password) {
+        $this->UserModel->SignUp($name, $email, $password);
+        $user = $this->UserModel->getUserByEmail($email);
+            $_SESSION['user_email'] = $email;
+            $_SESSION['user_role'] = $user['role'];
+            header("location: index.php?action=list");
+    }
+   
     public function logOut() {
         session_unset();
         session_destroy();

@@ -4,8 +4,6 @@ if (!isset($_SESSION['user_email'])) {
     header("Location: index.php?action=SignFrom");
     exit;
 }
-?>
-<?php
 require_once "../config.php";
 $database = new Database();
 $db = $database->getConnection();

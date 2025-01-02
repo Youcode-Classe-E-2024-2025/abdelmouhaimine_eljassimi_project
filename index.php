@@ -90,6 +90,17 @@ switch ($action) {
                 case "logout":
                     $userController->logOut();
                     break;
+                case "signupForm":
+                    $userController->signupForm();
+                    break;
+            case "signup":
+                if($_SERVER["REQUEST_METHOD"]==="POST"){
+                    $email = $_POST["email"];
+                    $name = $_POST["name"];
+                    $password = $_POST["password"];
+                    $userController->signup($name, $email, $password);
+                }
+                break;
             case "404":
             require "view/404.php";
             break;
