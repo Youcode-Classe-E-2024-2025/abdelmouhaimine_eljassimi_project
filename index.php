@@ -6,16 +6,15 @@ require_once "controller/TaskController.php";
 
 
 $projectModel = new ProjectController();
-$userModel = new UserController();
-$TaskModel = new TaskController();
+$userController = new UserController();
+$TaskController = new TaskController();
 
-
-$action = $_GET["action"]??"list";
+$action = $_GET["action"]??"SignFrom";
 
 switch ($action) {
     case "list": $projectModel->showProjects(); break;
 
-    case "create": $userModel->AfficheUsers(); break;
+    case "create": $userController->AfficheUsers(); break;
 
     case "create_project": 
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
@@ -41,10 +40,10 @@ switch ($action) {
         break;
     case "kanban":
         $id = $_GET["id"];
-        $TaskModel->showProjects($id);
+        $TaskController->showProjects($id);
         break;
         case "create_task":
-            $TaskModel->afficheTaksForm();
+            $TaskController->afficheTaksForm();
         break;
         case "createTask":
             $project_id = $_GET["id"];
@@ -55,18 +54,18 @@ switch ($action) {
                 $due_date = $_POST["due_date"];
                 $category = $_POST["category"];
                 $user_id = $_POST["users"];
-                $TaskModel->createTask($project_id,$name, $description, $category,$status, $due_date,$user_id);
+                $TaskController->createTask($project_id,$name, $description, $category,$status, $due_date,$user_id);
             }
         break;
         case "deleteTask":
                 $idTask = $_GET["idTask"];
                 $idProject = $_GET["idProject"];
-                $TaskModel->deleteTask($idTask, $idProject);
+                $TaskController->deleteTask($idTask, $idProject);
         break;
         case "editForm": 
             $idTask = $_GET["idTask"];
             $idProject = $_GET["idProject"];
-            $TaskModel->editFrom($idTask, $idProject);
+            $TaskController->editFrom($idTask, $idProject);
         break;
         case "EditTask":
             if($_SERVER['REQUEST_METHOD'] === 'POST'){
@@ -75,7 +74,24 @@ switch ($action) {
                 $idProject = $_POST["projectid"];
                 $description = $_POST["description"];
                 $status = $_POST["status"];
+                $TaskController->EditTask($idProject,$idTask,$name, $description, $status);
             }
-            $TaskModel->EditTask($idProject,$idTask,$name, $description, $status);
+            break;
+            case "SignFrom":
+                $userController->signForm();
+                break;
+            case "signin":
+                if($_SERVER["REQUEST_METHOD"]==="POST"){
+                    $email = $_POST["email"];
+                    $password = $_POST["password"];
+                    $userController->signin($email, $password);
+                }
+                break;
+                case "logout":
+                    $userController->logOut();
+                    break;
+            case "404":
+            require "view/404.php";
+            break;
 
 }

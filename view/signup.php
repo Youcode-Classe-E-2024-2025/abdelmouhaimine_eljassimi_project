@@ -11,11 +11,7 @@
         <h2 id="authTitle" class="text-2xl font-bold text-white mb-4 text-center">Sign In</h2>
         <p id="authDescription" class="text-white text-center mb-6">Sign in to your account to continue</p>
         
-        <form id="authForm" class="space-y-4">
-            <div id="nameField" class="hidden">
-                <label for="name" class="block text-sm font-medium text-white">Name</label>
-                <input type="text" id="name" name="name" class="mt-1 block h-10 w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" placeholder="John Doe">
-            </div>
+        <form action="?action=signin" id="authForm" class="space-y-4">
             <div>
                 <label for="email" class="block text-sm font-medium text-white">Email</label>
                 <input type="email" id="email" name="email" required class="mt-1 block h-10 w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" placeholder=" john@example.com">
