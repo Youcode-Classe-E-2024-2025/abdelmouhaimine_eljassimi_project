@@ -46,9 +46,9 @@
 
         <p class="mt-4 text-sm text-center">
             <span id="authToggleText" class="text-white">Don't have an account?</span>
-            <button type="button" id="authToggle" class="ml-1 font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none">
+            <a href="?action=signupForm" type="button" id="authToggle" class="ml-1 font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none">
                 Sign Up
-            </button>
+             </a>
         </p>
     </div>
     <script src="../javascript/main.js"></script>

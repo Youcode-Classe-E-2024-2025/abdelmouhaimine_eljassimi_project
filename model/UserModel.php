@@ -27,22 +27,14 @@ class User {
     public function signinCheck($email, $password) {
         $sql = "SELECT * FROM users WHERE email = :email";
         $stmt = $this->pdo->prepare($sql);
-        $stmt->execute([
-            ':email' => $email
-        ]);
+        $stmt->execute([':email' => $email]);
     
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
     
         if ($user) {
-            echo "Fetched user: " . print_r($user, true);
             if (password_verify($password, $user['password'])) {
-                echo "Password verified.";
                 return true;
-            } else {
-                echo "Password verification failed.";
             }
-        } else {
-            echo "No user found for email: $email.";
         }
         return false;
     }
@@ -52,6 +44,17 @@ class User {
         $stmt->bindParam(':email', $email);
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function SignUp($name, $email, $password) {
+        $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
+        $sql = "INSERT INTO users (name,email,password,role) values (:name,:email,:password, 'member')";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([
+            "name"=> htmlspecialchars($name),
+            "email"=> htmlspecialchars($email),
+            "password"=> $hashedPassword
+        ]);
     }
 }
 ?>

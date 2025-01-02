@@ -8,10 +8,14 @@
 </head>
 <body class="min-h-screen flex items-center justify-center bg-gray-900">
     <div class="w-full max-w-md bg-gray-800 rounded-lg shadow-md p-8">
-        <h2 id="authTitle" class="text-2xl font-bold text-white mb-4 text-center">Sign In</h2>
-        <p id="authDescription" class="text-white text-center mb-6">Sign in to your account to continue</p>
+        <h2 id="authTitle" class="text-2xl font-bold text-white mb-4 text-center">Sign Un</h2>
+        <p id="authDescription" class="text-white text-center mb-6">Sign up to your account to continue</p>
         
-        <form action="?action=signin" id="authForm" class="space-y-4">
+        <form action="?action=signup" method="POST" id="authForm" class="space-y-4">
+            <div>
+                <label for="name" class="block text-sm font-medium text-white">Name</label>
+                <input type="Text" id="name" name="name" required class="mt-1 block h-10 w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" placeholder=" Your name">
+            </div>
             <div>
                 <label for="email" class="block text-sm font-medium text-white">Email</label>
                 <input type="email" id="email" name="email" required class="mt-1 block h-10 w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" placeholder=" john@example.com">
@@ -21,7 +25,7 @@
                 <input type="password" id="password" name="password" required class="mt-1 h-10 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" placeholder=" Your password">
             </div>
             <button type="submit" class="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                Sign In
+                Sign up
             </button>
         </form>
 
@@ -46,10 +50,10 @@
         </div>
 
         <p class="mt-4 text-sm text-center">
-            <span id="authToggleText ">Don't have an account?</span>
-            <button type="button" id="authToggle" class="ml-1 font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none">
-                Sign Up
-            </button>
+            <span id="authToggleText ">You have an account?</span>
+            <a href="?action=signForm" type="button" id="authToggle" class="ml-1 font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none">
+                Sign in
+            </a>
         </p>
     </div>
     <script src="../javascript/main.js"></script>
