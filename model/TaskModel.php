@@ -16,7 +16,7 @@ class Task {
     }
 
     // Save task to the database
-    public function create($projectId, $title,$description,$category_id, $status, $duedate) {
+    public function create($projectId, $title,$description,$category_id, $status, $duedate,$user_id) {
         $sql = "INSERT INTO tasks (project_id, title, status, description,category_id,due_date) VALUES (:project_id, :title, :status, :description,:category_id,:due_date)";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([
@@ -27,6 +27,14 @@ class Task {
             'category_id'=> $category_id,
             'due_date'=> $duedate
         ]);
+        $taskId = $this->pdo->lastInsertId();
+        $stmt = $this->pdo->prepare("INSERT INTO task_assignments (task_id, user_id) VALUES (:task_id, :user_id)");
+            foreach ($user_id as $userId) {
+                $stmt->execute([
+                    ':task_id' =>  $taskId,
+                    ':user_id' => $userId,
+                ]);
+            }
     }
 
     public function getByProjectId($projectId) {

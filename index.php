@@ -54,7 +54,8 @@ switch ($action) {
                 $status = $_POST["status"];
                 $due_date = $_POST["due_date"];
                 $category = $_POST["category"];
-                $TaskModel->createTask($project_id,$name, $description, $category,$status, $due_date);
+                $user_id = $_POST["users"];
+                $TaskModel->createTask($project_id,$name, $description, $category,$status, $due_date,$user_id);
             }
         break;
         case "deleteTask":
