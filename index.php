@@ -43,4 +43,23 @@ switch ($action) {
         $id = $_GET["id"];
         $TaskModel->showProjects($id);
         break;
+        case "create_task":
+            $TaskModel->afficheTaksForm();
+        break;
+        case "createTask":
+            $project_id = $_GET["id"];
+            if($_SERVER['REQUEST_METHOD'] === 'POST'){
+                $name = $_POST["name"];
+                $description = $_POST["description"];
+                $status = $_POST["status"];
+                $due_date = $_POST["due_date"];
+                $category = $_POST["category"];
+                $TaskModel->createTask($project_id,$name, $description, $category,$status, $due_date);
+            }
+        break;
+        case "deleteTask":
+                $idTask = $_GET["idTask"];
+                $idProject = $_GET["idProject"];
+                $TaskModel->deleteTask($idTask, $idProject);
+        
 }

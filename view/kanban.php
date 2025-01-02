@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kanban Board</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body class="bg-gray-900 text-white min-h-screen flex flex-col">
     <nav class="bg-gray-800 border-b border-gray-700">
@@ -80,12 +81,8 @@
                 <!-- Header -->
                 <header class="flex justify-between items-center mb-8">
                     <h1 class="text-2xl font-bold">Task Board</h1>
-                    <a class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg flex items-center">
-                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-                        </svg>
-                        Add New Task
-                    </a>
+                    <?php $id=$_GET["id"]; ?>
+                    <a href="?action=create_task&id=<?=$id?>" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg flex items-center"> + Add New Task</a>
                 </header>
 
                 <!-- Kanban Board -->
@@ -100,10 +97,12 @@
                         <div class="space-y-4">
                             <?php foreach ($todoTasks as $todoTask):?>
                             <div class="bg-gray-700 p-4 rounded-lg">
-                                <h3 class="font-medium mb-2"><?= $todoTask["title"] ?></h3>
+                                <div class="flex justify-between">
+                                    <h3 class="font-medium mb-2"><?= $todoTask["title"] ?></h3>
+                                    <a href="?action=deleteTask&idTask=<?=$todoTask["id"]?>&idProject=<?=$id?>"><i class='bx bx-trash text-red-600' ></i></a>
+                                </div>
                                 <div class="flex justify-between text-sm text-gray-400">
-                                    <span><?= $todoTask["created_at"] ?></span>
-                                    <span>0/3</span>
+                                    <span>Limit Date: <?= $todoTask["due_date"] ?></span>
                                 </div>
                             </div>
                             <?php endforeach; ?>
@@ -120,10 +119,12 @@
                         <div class="space-y-4">
                             <?php foreach ($doingTasks as $doingTask):?>
                             <div class="bg-gray-700 p-4 rounded-lg">
-                                <h3 class="font-medium mb-2"><?= $doingTask["title"] ?></h3>
+                            <div class="flex justify-between">
+                                    <h3 class="font-medium mb-2"><?= $doingTask["title"] ?></h3>
+                                    <a href="?action=deleteTask&idTask=<?=$doingTask["id"]?>&idProject=<?=$id?>"><i class='bx bx-trash text-red-600' ></i></a>
+                                </div>
                                 <div class="flex justify-between text-sm text-gray-400">
-                                    <span><?= $doingTask["created_at"] ?></span>
-                                    <span>0/3</span>
+                                    <span>Limit Date: <?= $doingTask["due_date"] ?></span>
                                 </div>
                             </div>
                             <?php endforeach; ?>
@@ -139,10 +140,12 @@
                         <div class="space-y-4">
                             <?php foreach ($todoTasks as $todoTask):?>
                             <div class="bg-gray-700 p-4 rounded-lg">
-                                <h3 class="font-medium mb-2"><?= $todoTask["title"] ?></h3>
+                                <div class="flex justify-between">
+                                    <h3 class="font-medium mb-2"><?= $todoTask["title"] ?></h3>
+                                    <a href="?action=deleteTask&idTask=<?=$todoTask["id"]?>&idProject=<?=$id?>"><i class='bx bx-trash text-red-600' ></i></a>
+                                </div>
                                 <div class="flex justify-between text-sm text-gray-400">
-                                    <span><?= $todoTask["created_at"] ?></span>
-                                    <span>0/3</span>
+                                    <span>Limit Date: <?= $todoTask["due_date"] ?></span>
                                 </div>
                             </div>
                             <?php endforeach; ?>
@@ -158,10 +161,12 @@
                         <div class="space-y-4">
                             <?php foreach ($todoTasks as $todoTask):?>
                             <div class="bg-gray-700 p-4 rounded-lg">
-                                <h3 class="font-medium mb-2"><?= $todoTask["title"] ?></h3>
+                                <div class="flex justify-between">
+                                    <h3 class="font-medium mb-2"><?= $todoTask["title"] ?></h3>
+                                    <a href="?action=deleteTask&idTask=<?=$todoTask["id"]?>&idProject=<?=$id?>"><i class='bx bx-trash text-red-600' ></i></a>
+                                </div>
                                 <div class="flex justify-between text-sm text-gray-400">
-                                    <span><?= $todoTask["created_at"] ?></span>
-                                    <span>0/3</span>
+                                    <span>Limit Date: <?= $todoTask["due_date"] ?></span>
                                 </div>
                             </div>
                             <?php endforeach; ?>
