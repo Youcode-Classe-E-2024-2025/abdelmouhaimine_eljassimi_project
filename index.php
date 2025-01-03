@@ -110,5 +110,8 @@ switch ($action) {
             case "404":
             require "view/404.php";
             break;
-
+            case "dashboard":
+                $id = $_GET["id"];
+                 $TaskController->ChartTasks($id);
+                break;
 }

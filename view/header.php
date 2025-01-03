@@ -25,7 +25,10 @@ if (!isset($_SESSION['user_email'])) {
                         <div class="ml-10 flex items-baseline space-x-4">
                             <a href="?action=kanban&id=11" class="text-white px-3 py-2 rounded-md text-sm font-medium">Tasks</a>
                             <a href="?action=list" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Projects</a>
-                            <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Calendar</a>
+                            <?php if ($_SESSION['user_role'] === 'admin'): ?>
+                                <?php $id = $_GET["id"] ?>
+                            <a href="?action=dashboard&id=<?=$id?>" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Dashboard</a>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>

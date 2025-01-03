@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body class="bg-gray-900 text-white min-h-screen p-6">
     <div class="max-w-7xl mx-auto">
@@ -72,7 +73,9 @@
                     <button class="text-blue-500">Monthly</button>
                 </div>
             </div>
-            <div class="h-64 bg-gray-700 rounded-lg"></div>
+            <div class="h-64 bg-gray-700 rounded-lg">
+            <canvas id="myChart" class="w-full h-full"></canvas>
+            </div>
         </div>
 
         <!-- Task List -->
@@ -128,6 +131,53 @@
             </div>
         </div>
     </div>
-</body>
-</html>
 
+    <?php
+
+        $todoTasks = array_filter($tasks, function($task) { return $task['status'] === 'todo';});
+        $doingTasks = array_filter($tasks, function($task) { return $task['status'] === 'doing';});
+        $reviewTasks = array_filter($tasks, function($task) { return $task['status'] === 'review';});
+        $doneTasks = array_filter($tasks, function($task) { return $task['status'] === 'done';});
+    ?>
+
+    <script>
+        const todoTasks = <?= json_encode(count($todoTasks)) ?>;
+        const doingTasks = <?= json_encode(count($doingTasks)) ?>;
+        const reviewTasks = <?= json_encode(count($reviewTasks)) ?>;
+        const doneTasks = <?= json_encode(count($doneTasks)) ?>;
+
+        const data = {
+            labels: ['To Do', 'Doing', 'Review', 'Done'],
+            datasets: [
+                {
+                    label: 'Task Status',
+                    data: [todoTasks, doingTasks, reviewTasks, doneTasks],
+                    borderColor: '#A855F7',
+                    backgroundColor: 'rgba(168, 85, 247, 0.2)',
+                    tension: 0.1
+                }
+            ]
+        };
+
+        const ctx = document.getElementById('myChart').getContext('2d');
+
+        new Chart(ctx, {
+            type: 'line',
+            data: data,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        stepSize: 1,
+                    }
+                }
+          }
+      });
+        const canvas = document.getElementById('myChart');
+        canvas.style.width = "100%";
+        canvas.style.height = "400px";
+    </script>
+    </body>
+    </html>

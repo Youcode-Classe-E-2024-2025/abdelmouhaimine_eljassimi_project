@@ -73,12 +73,18 @@ $tags = new tag();
             <!-- Kanban Board -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <!-- Todo Column -->
+                <?php
+                var_dump($tasks);
+                $todoTasks = array_filter($tasks, function($task) { return $task['status'] === 'todo';}); ?>
                 <div class="bg-gray-800/50 rounded-xl p-4" ondrop="drop(event)" ondragover="allowDrop(event)">
-                    <h2 class="text-lg font-semibold text-white mb-4 flex items-center">
-                        <span class="w-3 h-3 bg-yellow-500 rounded-full mr-2"></span>
-                        Todo
-                    </h2>
-                    <?php $todoTasks = array_filter($tasks, function($task) { return $task['status'] === 'todo';}); ?>
+                    <div class="flex justify-between">
+                        <h2 class="text-lg font-semibold text-white mb-4 flex items-center">
+                            <span class="w-3 h-3 bg-yellow-500 rounded-full mr-2"></span>Todo
+                        </h2>
+                        <div class="w-8 h-6 bg-yellow-500 text-white flex justify-center items-center rounded-full text-xl font-bold shadow-md">
+                          <?= count($todoTasks) ?>
+                        </div>
+                    </div>
                     <div class="space-y-4">
                         <?php foreach ($todoTasks as $todoTask):?>
                             <?php   $tag = $tags->getTaskTag($todoTask['id']); ?>
@@ -119,12 +125,16 @@ $tags = new tag();
                 </div>
 
                 <!-- Doing Column -->
+                <?php $doingTasks = array_filter($tasks, function($task) { return $task['status'] === 'doing';}); ?>
                 <div class="bg-gray-800/50 rounded-xl p-4" ondrop="drop(event)" ondragover="allowDrop(event)">
-                    <h2 class="text-lg font-semibold text-white mb-4 flex items-center">
-                        <span class="w-3 h-3 bg-blue-500 rounded-full mr-2"></span>
-                        In Progress
-                    </h2>
-                    <?php $doingTasks = array_filter($tasks, function($task) { return $task['status'] === 'doing';}); ?>
+                <div class="flex justify-between">
+                        <h2 class="text-lg font-semibold text-white mb-4 flex items-center">
+                            <span class="w-3 h-3 bg-blue-500 rounded-full mr-2"></span>In Progress
+                        </h2>
+                        <div class="w-8 h-6 bg-blue-500 text-white flex justify-center items-center rounded-full text-xl font-bold shadow-md">
+                          <?= count($doingTasks) ?>
+                        </div>
+                    </div>
                     <div class="space-y-4">
                         <?php foreach ($doingTasks as $doingTask):?>
                           <?php   $tag = $tags->getTaskTag($doingTask['id']); ?>
@@ -165,11 +175,16 @@ $tags = new tag();
                 </div>
 
                 <!-- Review Column -->
+                <?php $reviewTasks = array_filter($tasks, function($task) { return $task['status'] === 'review';}); ?>
                 <div class="bg-gray-800/50 rounded-xl p-4" ondrop="drop(event)" ondragover="allowDrop(event)">
-                    <h2 class="text-lg font-semibold text-white mb-4 flex items-center">
-                        <span class="w-3 h-3 bg-red-500 rounded-full mr-2"></span>
-                        Review
-                    </h2>
+                     <div class="flex justify-between">
+                        <h2 class="text-lg font-semibold text-white mb-4 flex items-center">
+                            <span class="w-3 h-3 bg-red-500 rounded-full mr-2"></span>Review
+                        </h2>
+                        <div class="w-8 h-6 bg-red-500 text-white flex justify-center items-center rounded-full text-xl font-bold shadow-md">
+                          <?= count($reviewTasks) ?>
+                        </div>
+                    </div>
                     <?php $reviewTasks = array_filter($tasks, function($task) { return $task['status'] === 'review';}); ?>
                     <div class="space-y-4">
                         <?php foreach ($reviewTasks as $reviewTask):?>
@@ -211,12 +226,16 @@ $tags = new tag();
                 </div>
 
                 <!-- Done Column -->
+                <?php $doneTasks = array_filter($tasks, function($task): bool { return $task['status'] === 'done';}); ?>
                 <div class="bg-gray-800/50 rounded-xl p-4" ondrop="drop(event)" ondragover="allowDrop(event)">
-                    <h2 class="text-lg font-semibold text-white mb-4 flex items-center">
-                        <span class="w-3 h-3 bg-green-500 rounded-full mr-2"></span>
-                        Done
-                    </h2>
-                    <?php $doneTasks = array_filter($tasks, function($task) { return $task['status'] === 'done';}); ?>
+                    <div class="flex justify-between">
+                        <h2 class="text-lg font-semibold text-white mb-4 flex items-center">
+                            <span class="w-3 h-3 bg-green-500 rounded-full mr-2"></span>Done
+                        </h2>
+                        <div class="w-8 h-6 bg-green-500 text-white flex justify-center items-center rounded-full text-xl font-bold shadow-md">
+                          <?= count($doneTasks) ?>
+                        </div>
+                    </div>
                     <div class="space-y-4">
                         <?php foreach ($doneTasks as $doneTask):?>
                             <?php   $tag = $tags->getTaskTag($doingTask['id']); ?>
