@@ -16,7 +16,7 @@ class Task {
     }
 
     // Save task to the database
-    public function create($projectId, $title,$description,$category_id, $status, $duedate,$user_id) {
+    public function create($projectId, $title,$description,$category_id, $status, $duedate,$user_id,$tag) {
         $sql = "INSERT INTO tasks (project_id, title, status, description,category_id,due_date) VALUES (:project_id, :title, :status, :description,:category_id,:due_date)";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([
@@ -35,6 +35,13 @@ class Task {
                     ':user_id' => $userId,
                 ]);
             }
+        $stmt = $this->pdo->prepare("INSERT INTO task_tags (task_id, tag_id) VALUES (:task_id, :tag_id)");
+            foreach ($user_id as $userId) {
+                $stmt->execute([
+                    ':task_id' =>  $taskId,
+                    ':tag_id' => $tag,
+                ]);
+            }
     }
 
     public function getByProjectId($projectId) {
@@ -43,6 +50,7 @@ class Task {
         $stmt->execute([':project_id' => $projectId]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
 
     public function delete($id){
         $sql = 'DELETE FROM tasks WHERE id=:id';

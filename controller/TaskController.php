@@ -3,17 +3,20 @@
 require_once "model/TaskModel.php";
 require_once "model/UserModel.php";
 require_once "model/CategoryModel.php";
+require_once "model/TagModel.php";
 
 class TaskController {
     private $taskModel;
+    private $tagModel;
 
     public function __construct() {
         $this->taskModel = new Task();
+        $this->tagModel = new Tag();
 
     }
 
-    public function createTask($projectId, $title,$description,$category_id, $status, $duedate,$user_id) {
-        $this->taskModel->create($projectId, $title,$description,$category_id, $status, $duedate,$user_id);
+    public function createTask($projectId, $title,$description,$category_id, $status, $duedate,$user_id,$tag) {
+        $this->taskModel->create($projectId, $title,$description,$category_id, $status, $duedate,$user_id,$tag);
         header("location: index.php?action=kanban&id=$projectId");
     }
 
@@ -26,6 +29,8 @@ class TaskController {
         $users = $UserModel->getAllUsers();
         $CategoryModel = new Category();
         $Categorys = $CategoryModel->getCategory();
+        $TagModel = new Tag();
+        $Tags = $TagModel->getTag();
         require 'view/task_create_form.php';
     }
 

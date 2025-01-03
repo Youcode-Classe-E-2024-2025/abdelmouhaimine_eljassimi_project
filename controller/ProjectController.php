@@ -11,9 +11,9 @@ class ProjectController {
     }
 
 
-    public function createProject($name, $description,$users) {
-        $this->projectModel->create($name, $description,$users);
-        header("location: index.php");
+    public function createProject($name, $description,$users,$accesiblity) {
+        $this->projectModel->create($name, $description,$users,$accesiblity);
+        header("location: index.php?action=list");
     }
 
     public function showProjects() {
@@ -23,11 +23,11 @@ class ProjectController {
 
     public function editProject($name,$description,$id) {
         $this->projectModel->update($name, $description, $id);
-        header("location: index.php");
+        header("location: index.php?action=list");
     }
 
     public function deleteProject($id) {
         $this->projectModel->delete($id);
-        header("location: index.php");
+        header("location: index.php?action=list");
     }
 }
