@@ -57,5 +57,6 @@ class User {
             "password"=> $hashedPassword
         ]);
     }
+
 }
 ?>

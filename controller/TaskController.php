@@ -22,6 +22,7 @@ class TaskController {
 
     public function showProjects($projectId) {
         $tasks = $this->taskModel->getByProjectId($projectId);
+        $members = $this->taskModel->getProjectMembers($projectId);
         require "view/kanban.php";
     }
     public function afficheTaksForm(){
