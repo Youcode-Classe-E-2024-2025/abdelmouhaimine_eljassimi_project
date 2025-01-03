@@ -34,36 +34,17 @@ $tags = new tag();
         <div class="p-6 border-t border-gray-700">
             <h2 class="text-xl font-bold text-white mb-6">Team Members</h2>
             <div class="space-y-4">
+            <?php forEach($members as $member): ?>
                 <div class="flex items-center space-x-3">
                     <div class="relative">
                         <img class="h-10 w-10 rounded-full object-cover ring-2 ring-gray-700" src="/api/placeholder/40/40" alt="John Doe">
                         <span class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full ring-2 ring-gray-800"></span>
                     </div>
                     <div>
-                        <p class="text-sm font-medium text-white">John Doe</p>
-                        <p class="text-xs text-gray-400">Project Manager</p>
+                        <p class="text-sm font-medium text-white"><?=$member["name"]?></p>
                     </div>
                 </div>
-                <div class="flex items-center space-x-3">
-                    <div class="relative">
-                        <img class="h-10 w-10 rounded-full object-cover ring-2 ring-gray-700" src="/api/placeholder/40/40" alt="Jane Smith">
-                        <span class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full ring-2 ring-gray-800"></span>
-                    </div>
-                    <div>
-                        <p class="text-sm font-medium text-white">Jane Smith</p>
-                        <p class="text-xs text-gray-400">Developer</p>
-                    </div>
-                </div>
-                <div class="flex items-center space-x-3">
-                    <div class="relative">
-                        <img class="h-10 w-10 rounded-full object-cover ring-2 ring-gray-700" src="/api/placeholder/40/40" alt="Mike Johnson">
-                        <span class="absolute bottom-0 right-0 w-3 h-3 bg-gray-400 rounded-full ring-2 ring-gray-800"></span>
-                    </div>
-                    <div>
-                        <p class="text-sm font-medium text-white">Mike Johnson</p>
-                        <p class="text-xs text-gray-400">Designer</p>
-                    </div>
-                </div>
+                <?php endforeach; ?>
             </div>
         </div>
     </aside>
