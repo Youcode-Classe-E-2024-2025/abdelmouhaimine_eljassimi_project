@@ -51,7 +51,7 @@
 
         <p class="mt-4 text-sm text-center">
             <span id="authToggleText ">You have an account?</span>
-            <a href="?action=signForm" type="button" id="authToggle" class="ml-1 font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none">
+            <a href="?action=SignFrom" type="button" id="authToggle" class="ml-1 font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none">
                 Sign in
             </a>
         </p>

@@ -20,8 +20,9 @@ switch ($action) {
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
             $name = $_POST["name"];
             $description = $_POST["description"];
+            $accesiblity = $_POST["accesibility"];
             $users = $_POST["users"];
-            $projectModel->createProject($name, $description,$users);
+            $projectModel->createProject($name, $description,$users,$accesiblity);
         }
     break;
 
@@ -54,7 +55,8 @@ switch ($action) {
                 $due_date = $_POST["due_date"];
                 $category = $_POST["category"];
                 $user_id = $_POST["users"];
-                $TaskController->createTask($project_id,$name, $description, $category,$status, $due_date,$user_id);
+                $tag = $_POST["tag"];
+                $TaskController->createTask($project_id,$name, $description, $category,$status, $due_date,$user_id,$tag);
             }
         break;
         case "deleteTask":
@@ -78,7 +80,11 @@ switch ($action) {
             }
             break;
             case "SignFrom":
+                if(!isset($SESSION["user_id"])){
                 $userController->signForm();
+                }else{
+                    header("index.php?action=404");
+                }
                 break;
             case "signin":
                 if($_SERVER["REQUEST_METHOD"]==="POST"){

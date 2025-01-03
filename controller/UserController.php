@@ -22,8 +22,10 @@ class UserController {
     public function signin($email, $password) {
         if ($this->UserModel->signinCheck($email, $password)) {
             $user = $this->UserModel->getUserByEmail($email);
+            session_start();
             $_SESSION['user_email'] = $email;
             $_SESSION['user_role'] = $user['role'];
+            $_SESSION['user_id'] = $user['id'];
             header("location: index.php?action=list");
             exit;
         }else{
@@ -38,9 +40,11 @@ class UserController {
     public function signup($name, $email, $password) {
         $this->UserModel->SignUp($name, $email, $password);
         $user = $this->UserModel->getUserByEmail($email);
+        
             $_SESSION['user_email'] = $email;
+            $_SESSION['user_id'] = $user['id'];
             $_SESSION['user_role'] = $user['role'];
-            header("location: index.php?action=list");
+        header("location: index.php?action=list");
     }
    
     public function logOut() {

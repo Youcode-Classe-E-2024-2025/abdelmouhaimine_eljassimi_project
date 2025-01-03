@@ -1,5 +1,4 @@
 <?php
-session_start();
 if (!isset($_SESSION['user_email'])) {
     header("Location: index.php?action=SignFrom");
     exit;
@@ -54,6 +53,16 @@ if (!isset($_SESSION['user_email'])) {
         <?php endforeach; ?>
         </select>
       </div>
+
+      <div class="mb-4">
+        <label for="Tag" class="block text-gray-700 font-medium mb-2">Tag</label>
+        <select name="tag" class="flex-1 px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 chosen-select" id="status">
+        <?php foreach ($Tags as $Tag): ?>
+          <option value="<?=$Tag["id"]?>"><?=$Tag["name"]?></option>
+        <?php endforeach; ?>
+        </select>
+      </div>
+
       <div class="mb-4">
         <label for="description" class="block text-gray-700 font-medium mb-2">Due Date</label>
         <input type="date" name="due_date">

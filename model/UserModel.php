@@ -24,7 +24,7 @@ class User {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     
-    public function signinCheck($email, $password) {
+    public function signinCheck($email, $password) { 
         $sql = "SELECT * FROM users WHERE email = :email";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([':email' => $email]);
@@ -40,11 +40,12 @@ class User {
     }
 
     public function getUserByEmail($email) {
-        $stmt = $this->pdo->prepare("SELECT * FROM users WHERE email = :email");
-        $stmt->bindParam(':email', $email);
-        $stmt->execute();
+        $sql = "SELECT * FROM users WHERE email = :email";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([':email' => $email]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+    
 
     public function SignUp($name, $email, $password) {
         $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
