@@ -74,7 +74,6 @@ $tags = new tag();
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <!-- Todo Column -->
                 <?php
-                var_dump($tasks);
                 $todoTasks = array_filter($tasks, function($task) { return $task['status'] === 'todo';}); ?>
                 <div class="bg-gray-800/50 rounded-xl p-4" ondrop="drop(event)" ondragover="allowDrop(event)">
                     <div class="flex justify-between">
@@ -98,10 +97,12 @@ $tags = new tag();
                                         <i class='bx bx-trash text-xl'></i>
                                     </a>
                                     <?php endif;?>
+                                    <?php if ($_SESSION['user_role'] === 'admin' || $_SESSION['user_role'] === 'member' ): ?>
                                     <a href="view/task_edit_form.php?idTask=<?=$todoTask["id"]?>&idProject=<?=$id?>" 
                                        class="text-blue-400 hover:text-blue-300 transition-colors">
                                         <i class='bx bxs-edit text-xl'></i>
                                     </a>
+                                    <?php endif;?>
                                 </div>
                             </div>
                             <div class="flex items-center text-sm text-gray-400 mt-2">
@@ -148,10 +149,12 @@ $tags = new tag();
                                         <i class='bx bx-trash text-xl'></i>
                                     </a>
                                     <?php endif;?>
+                                    <?php if ($_SESSION['user_role'] === 'admin' || $_SESSION['user_role'] === 'member' ): ?>
                                     <a href="view/task_edit_form.php?idTask=<?=$doingTask["id"]?>&idProject=<?=$id?>" 
                                        class="text-blue-400 hover:text-blue-300 transition-colors">
                                         <i class='bx bxs-edit text-xl'></i>
                                     </a>
+                                    <?php endif;?>
                                 </div>
                             </div>
                             <div class="flex items-center text-sm text-gray-400 mt-2">
@@ -199,10 +202,12 @@ $tags = new tag();
                                         <i class='bx bx-trash text-xl'></i>
                                     </a>
                                     <?php endif;?>
+                                    <?php if ($_SESSION['user_role'] === 'admin' || $_SESSION['user_role'] === 'member' ): ?>
                                     <a href="view/task_edit_form.php?idTask=<?=$reviewTask["id"]?>&idProject=<?=$id?>" 
                                        class="text-blue-400 hover:text-blue-300 transition-colors">
                                         <i class='bx bxs-edit text-xl'></i>
                                     </a>
+                                    <?php endif;?>
                                 </div>
                             </div>
                             <div class="flex items-center text-sm text-gray-400 mt-2">
@@ -249,10 +254,12 @@ $tags = new tag();
                                         <i class='bx bx-trash text-xl'></i>
                                     </a>
                                     <?php endif;?>
+                                    <?php if ($_SESSION['user_role'] === 'admin' || $_SESSION['user_role'] === 'member' ): ?>
                                     <a href="view/task_edit_form.php?idTask=<?=$doneTask["id"]?>&idProject=<?=$id?>" 
                                        class="text-blue-400 hover:text-blue-300 transition-colors">
                                         <i class='bx bxs-edit text-xl'></i>
                                     </a>
+                                    <?php endif;?>
                                 </div>
                             </div>
                             <div class="flex items-center text-sm text-gray-400 mt-2">

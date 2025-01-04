@@ -114,4 +114,10 @@ switch ($action) {
                 $id = $_GET["id"];
                  $TaskController->ChartTasks($id);
                 break;
+            case "visitor":
+                $_SESSION['user_email'] = 'visitor@visitor.com';
+                $_SESSION['user_id'] = 5;
+                $_SESSION['user_role'] = 'visitor';
+                $projectModel->showVisitorProjects(); 
+                break;
 }

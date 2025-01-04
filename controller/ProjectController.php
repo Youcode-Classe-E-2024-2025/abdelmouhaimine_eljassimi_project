@@ -20,6 +20,10 @@ class ProjectController {
         $projects = $this->projectModel->getAll();
         require 'view/project_list.php';
     }
+    public function showVisitorProjects(){
+        $projects = $this->projectModel->getVisitorAll();
+        require 'view/project_list.php';
+    }
 
     public function editProject($name,$description,$id) {
         $this->projectModel->update($name, $description, $id);

@@ -41,6 +41,13 @@ class Project {
         $stmt->execute([':user_id' => $_SESSION['user_id'], ':role' => $_SESSION['user_role']]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function getVisitorAll() { 
+        $sql = " SELECT * FROM projects WHERE is_public = 0";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+     }
     
 
     
