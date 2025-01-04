@@ -22,7 +22,7 @@ class Project {
         $stmt->execute([
             ':name' => htmlspecialchars($name) ,
             ':description' => htmlspecialchars($description),
-            'is_public'=> htmlspecialchars($accesiblity)
+            'is_public'=> $accesiblity
         ]);
         
         $projectId = $this->pdo->lastInsertId();

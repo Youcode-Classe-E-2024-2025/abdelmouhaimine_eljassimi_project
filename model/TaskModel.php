@@ -21,9 +21,9 @@ class Task {
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([
             ':project_id' => $projectId,
-            ':title' => $title,
-            'status'=> $status,
-            'description'=> $description,
+            ':title' => htmlspecialchars($title),
+            'status'=> htmlspecialchars($status),
+            'description'=> htmlspecialchars($description),
             'category_id'=> $category_id,
             'due_date'=> $duedate
         ]);
@@ -64,9 +64,9 @@ class Task {
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([
             ':idtask' => $idtask, 
-            ':title' => $title,
-            ':status' => $status,
-            ':description' => $description
+            ':title' => htmlspecialchars($title),
+            ':status' => htmlspecialchars($status),
+            ':description' => htmlspecialchars($description)
         ]);
     }
 
