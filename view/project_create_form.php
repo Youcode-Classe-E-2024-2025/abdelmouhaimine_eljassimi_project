@@ -3,6 +3,7 @@ if (!isset($_SESSION['user_email'])) {
     header("Location: index.php?action=SignFrom");
     exit;
 }
+require_once "csrfToken.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,6 +26,7 @@ if (!isset($_SESSION['user_email'])) {
             </div>
 
             <form action="?action=create_project" method="POST" class="space-y-6">
+            <input type="hidden" name="csrf_token" value="<?php echo generateCsrfToken(); ?>">
                 <!-- Project Name -->
                 <div>
                     <label for="name" class="block text-sm font-medium text-gray-300 mb-2">

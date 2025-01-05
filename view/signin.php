@@ -2,8 +2,12 @@
 if (isset($_SESSION['user_id'])) {
     header('location: index.php?action=list');
     exit();
+
 }
+
+require_once "csrfToken.php";
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,6 +45,7 @@ if (isset($_SESSION['user_id'])) {
         <p id="authDescription" class="text-gray-300 text-center mb-8">Sign in to your account to continue</p>
         
         <form action="?action=signin" method="POST" id="authForm" class="space-y-6">
+           <input type="hidden" name="csrf_token" value="<?php echo generateCsrfToken(); ?>">
             <div class="space-y-2">
                 <label for="email" class="block text-sm font-medium text-gray-300">Email</label>
                 <input type="email" id="email" name="email" required 

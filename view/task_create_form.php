@@ -3,6 +3,9 @@ if (!isset($_SESSION['user_email'])) {
     header("Location: index.php?action=SignFrom");
     exit;
 }
+
+require_once "csrfToken.php";
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,7 +23,7 @@ if (!isset($_SESSION['user_email'])) {
     <h1 class="text-2xl font-bold text-gray-800 mb-4">Create a New Task</h1>
     <?php $id = $_GET["id"] ?>
     <form action="http://localhost/abdelmouhaimine_eljassimi_project/index.php?action=createTask&id=<?=$id?>" method="POST">
-
+      <input type="hidden" name="csrf_token" value="<?php echo generateCsrfToken(); ?>">
       <div class="mb-4">
         <label for="name" class="block text-gray-700 font-medium mb-2">Task Title</label>
         <input type="text" id="name" name="name" 

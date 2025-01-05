@@ -18,6 +18,9 @@ switch ($action) {
 
     case "create_project": 
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
+            if (!isset($_POST['csrf_token']) || !hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])) {
+                die('CSRF token validation failed.');
+            }
             $name = $_POST["name"];
             $description = $_POST["description"];
             $accesiblity = $_POST["accesibility"];
@@ -28,6 +31,9 @@ switch ($action) {
 
     case "edit_project": 
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
+            if (!isset($_POST['csrf_token']) || !hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])) {
+                die('CSRF token validation failed.');
+            }
             $name = $_POST["name"];
             $description = $_POST["description"];
             $id = $_POST["id"];
@@ -49,6 +55,9 @@ switch ($action) {
         case "createTask":
             $project_id = $_GET["id"];
             if($_SERVER['REQUEST_METHOD'] === 'POST'){
+                if (!isset($_POST['csrf_token']) || !hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])) {
+                    die('CSRF token validation failed.');
+                }
                 $name = $_POST["name"];
                 $description = $_POST["description"];
                 $status = $_POST["status"];
@@ -71,6 +80,9 @@ switch ($action) {
         break;
         case "EditTask":
             if($_SERVER['REQUEST_METHOD'] === 'POST'){
+                if (!isset($_POST['csrf_token']) || !hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])) {
+                    die('CSRF token validation failed.');
+                }
                 $name = $_POST["name"];
                 $idTask = $_POST["taskid"];
                 $idProject = $_POST["projectid"];
@@ -88,6 +100,9 @@ switch ($action) {
                 break;
             case "signin":
                 if($_SERVER["REQUEST_METHOD"]==="POST"){
+                    if (!isset($_POST['csrf_token']) || !hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])) {
+                        die('CSRF token validation failed.');
+                    }
                     $email = $_POST["email"];
                     $password = $_POST["password"];
                     $userController->signin($email, $password);
@@ -101,6 +116,9 @@ switch ($action) {
                     break;
             case "signup":
                 if($_SERVER["REQUEST_METHOD"]==="POST"){
+                    if (!isset($_POST['csrf_token']) || !hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])) {
+                        die('CSRF token validation failed.');
+                    }
                     $email = $_POST["email"];
                     $name = $_POST["name"];
                     $password = $_POST["password"];

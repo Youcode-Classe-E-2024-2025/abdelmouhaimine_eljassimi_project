@@ -3,6 +3,7 @@ if (!isset($_SESSION['user_email'])) {
     header("Location: index.php?action=SignFrom");
     exit;
 }
+require_once "csrfToken.php";
 require_once "../config.php";
 $database = new Database();
 $db = $database->getConnection();
@@ -24,7 +25,7 @@ $description = $db->query("SELECT description FROM projects WHERE id = $id")->fe
   <div class="bg-white shadow-md rounded-lg p-6 w-full max-w-lg">
     <h1 class="text-2xl font-bold text-gray-800 mb-4">Edit Project</h1>
     <form action="http://localhost/abdelmouhaimine_eljassimi_project/index.php?action=edit_project" method="POST">
-
+      <input type="hidden" name="csrf_token" value="<?php echo generateCsrfToken(); ?>">
       <div class="mb-4">
        
         <input type="hidden" name="id" value="<?= $id ?>">

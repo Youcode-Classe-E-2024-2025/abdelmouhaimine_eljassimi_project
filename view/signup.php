@@ -1,3 +1,6 @@
+<?php
+require_once "csrfToken.php";
+ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,6 +38,7 @@
         <p id="authDescription" class="text-gray-300 text-center mb-8">Sign up to get started</p>
        
         <form action="?action=signup" method="POST" id="authForm" class="space-y-6">
+        <input type="hidden" name="csrf_token" value="<?php echo generateCsrfToken(); ?>">
             <div class="space-y-2">
                 <label for="name" class="block text-sm font-medium text-gray-300">Name</label>
                 <input type="text" id="name" name="name" required 

@@ -4,6 +4,7 @@ if (!isset($_SESSION['user_email'])) {
     header("Location: index.php?action=SignFrom");
     exit;
 }
+require_once "csrfToken.php";
 ?>
 <?php
 require_once "../config.php";
@@ -31,6 +32,7 @@ $Task = $db->query("SELECT * FROM tasks WHERE id = $idTask")->fetch(PDO::FETCH_A
   <div class="bg-white shadow-md rounded-lg p-6 w-full max-w-lg">
     <h1 class="text-2xl font-bold text-gray-800 mb-4">Edit Task</h1>
     <form action="http://localhost/abdelmouhaimine_eljassimi_project/index.php?action=EditTask" method="POST">
+      <input type="hidden" name="csrf_token" value="<?php echo generateCsrfToken(); ?>">
        <input type="hidden" name="taskid" value="<?=$idTask?>">
        <input type="hidden" name="projectid" value="<?=$idProject?>">
       <div class="mb-4">
