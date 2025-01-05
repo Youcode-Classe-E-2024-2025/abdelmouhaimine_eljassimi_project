@@ -9,10 +9,15 @@
 ## Links
 
 - **GitHub Repository :** [View on GitHub](https://github.com/Youcode-Classe-E-2024-2025/abdelmouhaimine_eljassimi_project.git)
+- **UML Use Case :** [View on Lucid Chart](https://lucid.app/lucidchart/001bfcbe-b401-4f32-9a7e-744d822056a1/edit?viewport_loc=-526%2C-3%2C2865%2C1265%2C0_0&invitationId=inv_c709af06-d0fa-43bc-8367-14660934b914)
 
 ## UML Diagramme de classe : 
 
-![diagramme de classe](assets/Gestion-des-Task.png)
+![diagramme de classe](assets/Diagram/Class.png)
+
+## UML Diagramme Use Case : 
+
+![diagramme de classe](assets/Diagram/UseCase.png)
 
 
 # Configuration et Exécution du Projet
