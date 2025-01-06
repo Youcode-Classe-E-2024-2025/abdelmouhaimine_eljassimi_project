@@ -61,9 +61,20 @@ class Project {
         ]);
     }
     public function delete($id) {
-        $sql = "DELETE FROM projects WHERE id=$id";
-        $stmt = $this->pdo->query($sql);
-        $stmt->execute();
+        $sql = "DELETE FROM projects WHERE id= :id";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([
+            ':id' => htmlspecialchars($id)
+        ]);
+    }
+
+    public function deletemember($idUser,$idProject){
+        $sql = "DELETE FROM project_members WHERE project_id = :project_id AND user_id = :user_id";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([
+            ':project_id' => htmlspecialchars($idProject),
+            ':user_id' => htmlspecialchars($idUser)
+        ]);
     }
 }
 ?>

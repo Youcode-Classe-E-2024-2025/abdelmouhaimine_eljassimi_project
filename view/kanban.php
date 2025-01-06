@@ -30,18 +30,30 @@ $tags = new tag();
                 </a>
             </nav>
         </div>
-
         <div class="p-6 border-t border-gray-700">
             <h2 class="text-xl font-bold text-white mb-6">Team Members</h2>
             <div class="space-y-4">
             <?php forEach($members as $member): ?>
                 <div class="flex items-center space-x-3">
                     <div class="relative">
-                        <img class="h-10 w-10 rounded-full object-cover ring-2 ring-gray-700" src="/api/placeholder/40/40" alt="John Doe">
-                        <span class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full ring-2 ring-gray-800"></span>
+                    <div class="relative h-10 w-10 rounded-full ring-2 ring-gray-700 flex items-center justify-center bg-gray-900 text-white font-bold">
+                        <img class="h-full w-full rounded-full object-cover" src=""  alt=""   onerror="this.style.display='none';">
+                        <span>
+                            <?=preg_match('/[a-zA-Z]/', $member["name"], $matches) ? $matches[0] : ''?>
+                        </span>
+                    </div>                      
+                      <span class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full ring-2 ring-gray-800"></span>
                     </div>
-                    <div>
+                    <div class="w-full flex justify-between">
                         <p class="text-sm font-medium text-white"><?=$member["name"]?></p>
+                        <div>
+                            <a href="?action=deleteUser&idUser=<?=$member["id"]?>&idProject=<?=$id?>" class="text-red-400 hover:text-red-300 transition-colors">
+                                <i class='bx bx-trash text-xl'></i>
+                            </a>
+                            <a href="view/RolePermissions.php?idUser=<?=$member["id"]?>&idProject=<?=$id?>" class="text-blue-400 hover:text-blue-300 transition-colors">
+                                <i class='bx bxs-edit text-xl'></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
                 <?php endforeach; ?>

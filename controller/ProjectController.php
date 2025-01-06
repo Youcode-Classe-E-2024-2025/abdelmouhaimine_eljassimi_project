@@ -34,4 +34,8 @@ class ProjectController {
         $this->projectModel->delete($id);
         header("location: index.php?action=list");
     }
+    public function DeleteMember($idUser,$idProject){
+        $this->projectModel->deletemember($idUser,$idProject);
+        header("location: index.php?action=kanban&id=". $idProject);
+    }
 }

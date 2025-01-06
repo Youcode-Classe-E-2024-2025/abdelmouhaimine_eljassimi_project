@@ -85,7 +85,7 @@ if (!isset($_SESSION['user_email'])) {
                     </div>
                 </div>
                 <div class="hidden md:block">
-                    <div class="ml-4 flex items-center md:ml-6">
+                    <div class="ml-4 flex items-center gap-4 md:ml-6">
                         <button class="bg-gray-800 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
                             <span class="sr-only">View notifications</span>
                             <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
@@ -100,7 +100,16 @@ if (!isset($_SESSION['user_email'])) {
                                 </button>
                             </div>
                         </div>
-                        <a href="?action=logout"><i class='bx bx-log-out text-gray-300 text-2xl ml-4'></i></a>
+                        <a href="?action=logout" class="Btn flex items-center justify-start w-[30px] h-[30px] border-none rounded-full cursor-pointer relative overflow-hidden transition-all duration-300 shadow-[2px_2px_10px_rgba(0,0,0,0.2)] bg-[#ff4141]">
+                        <!-- Sign (SVG) -->
+                        <div class="sign w-full transition-all duration-300 flex items-center justify-center">
+                        <svg viewBox="0 0 512 512" class="w-[17px]">
+                            <path fill="white" d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"></path>
+                        </svg>
+                        </div>
+                        <!-- Text -->
+                        <div class="text absolute right-0 w-0 opacity-0 text-white text-[1.2em] font-semibold transition-all duration-300">Logout</div>
+                      </a>
                     </div>
                 </div>
             </div>
@@ -136,6 +145,30 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+    const button = document.querySelector('.Btn');
+    const sign = document.querySelector('.sign');
+    const text = document.querySelector('.text');
+
+    button.addEventListener('mouseenter', () => {
+      button.classList.add('w-[125px]', 'rounded-[40px]');
+      sign.classList.add('w-[30%]', 'pl-[20px]');
+      text.classList.add('opacity-100', 'w-[70%]', 'pr-[10px]');
+    });
+
+    button.addEventListener('mouseleave', () => {
+      button.classList.remove('w-[125px]', 'rounded-[40px]');
+      sign.classList.remove('w-[30%]', 'pl-[20px]');
+      text.classList.remove('opacity-100', 'w-[70%]', 'pr-[10px]');
+    });
+
+    button.addEventListener('mousedown', () => {
+      button.classList.add('translate-x-[2px]', 'translate-y-[2px]');
+    });
+
+    button.addEventListener('mouseup', () => {
+      button.classList.remove('translate-x-[2px]', 'translate-y-[2px]');
+    });
 
 </script>
 </body>

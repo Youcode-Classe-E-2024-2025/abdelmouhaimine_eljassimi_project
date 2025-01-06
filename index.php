@@ -5,14 +5,14 @@ require_once "controller/UserController.php";
 require_once "controller/TaskController.php";
 
 
-$projectModel = new ProjectController();
+$projectController = new ProjectController();
 $userController = new UserController();
 $TaskController = new TaskController();
 
 $action = $_GET["action"]??"SignFrom";
 
 switch ($action) {
-    case "list": $projectModel->showProjects(); break;
+    case "list": $projectController->showProjects(); break;
 
     case "create": $userController->AfficheUsers(); break;
 
@@ -25,7 +25,7 @@ switch ($action) {
             $description = $_POST["description"];
             $accesiblity = $_POST["accesibility"];
             $users = $_POST["users"];
-            $projectModel->createProject($name, $description,$users,$accesiblity);
+            $projectController->createProject($name, $description,$users,$accesiblity);
         }
     break;
 
@@ -37,13 +37,13 @@ switch ($action) {
             $name = $_POST["name"];
             $description = $_POST["description"];
             $id = $_POST["id"];
-            $projectModel->editProject($name, $description,$id);
+            $projectController->editProject($name, $description,$id);
         }
         break;
 
     case "delete_project":
         $id= $_GET["id"];
-        $projectModel->deleteProject($id);
+        $projectController->deleteProject($id);
         break;
     case "kanban":
         $id = $_GET["id"];
@@ -136,6 +136,12 @@ switch ($action) {
                 $_SESSION['user_email'] = 'visitor@visitor.com';
                 $_SESSION['user_id'] = 5;
                 $_SESSION['user_role'] = 'visitor';
-                $projectModel->showVisitorProjects(); 
+                $projectController->showVisitorProjects(); 
                 break;
+            case "deleteUser":
+                $idUser = $_GET["idUser"];
+                $idProject = $_GET["idProject"];
+                $projectController->DeleteMember($idUser,$idProject);
+                break;
+            
 }

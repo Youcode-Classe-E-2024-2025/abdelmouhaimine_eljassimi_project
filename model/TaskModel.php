@@ -71,7 +71,7 @@ class Task {
     }
 
     public function getProjectMembers($projectId){
-        $sql = 'SELECT u.name FROM users u join project_members pm on u.id = pm.user_id WHERE pm.project_id = :projectId;';
+        $sql = 'SELECT * FROM users u join project_members pm on u.id = pm.user_id WHERE pm.project_id = :projectId;';
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute(['projectId'=> $projectId]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
