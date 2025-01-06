@@ -71,7 +71,8 @@ $tags = new tag();
                     <p class="text-gray-400 mt-1">Track your project's progress</p>
                 </div>
                 <?php $id=$_GET["id"]; ?>
-                <?php if ($_SESSION['user_role'] === 'admin'): ?>
+                <?php foreach ($permissions as $permission): ?>
+                <?php if ($permission['name'] === 'create'): ?>
                 <a href="?action=create_task&id=<?=$id?>" 
                    class="inline-flex items-center px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white font-medium rounded-lg transition-colors">
                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -80,6 +81,7 @@ $tags = new tag();
                     Add New Task
                 </a>
                 <?php endif; ?>
+                <?php endforeach; ?>
             </header>
 
             <!-- Kanban Board -->
@@ -103,18 +105,20 @@ $tags = new tag();
                             <div class="flex justify-between items-start">
                                 <h3 class="font-medium text-white mb-2"><?= $todoTask["title"] ?></h3>
                                 <div class="flex space-x-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                                    <?php if ($_SESSION['user_role'] === 'admin'): ?>
+                                <?php foreach ($permissions as $permission): ?>
+                                    <?php if ($permission['name'] === 'delete'): ?>
                                     <a href="?action=deleteTask&idTask=<?=$todoTask["id"]?>&idProject=<?=$id?>" 
                                        class="text-red-400 hover:text-red-300 transition-colors">
                                         <i class='bx bx-trash text-xl'></i>
                                     </a>
                                     <?php endif;?>
-                                    <?php if ($_SESSION['user_role'] === 'admin' || $_SESSION['user_role'] === 'member' ): ?>
+                                    <?php if ($permission['name'] === 'edit'): ?>
                                     <a href="view/task_edit_form.php?idTask=<?=$todoTask["id"]?>&idProject=<?=$id?>" 
                                        class="text-blue-400 hover:text-blue-300 transition-colors">
                                         <i class='bx bxs-edit text-xl'></i>
                                     </a>
                                     <?php endif;?>
+                                    <?php endforeach; ?>
                                 </div>
                             </div>
                             <div class="flex items-center text-sm text-gray-400 mt-2">

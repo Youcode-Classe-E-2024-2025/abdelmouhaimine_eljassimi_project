@@ -143,5 +143,11 @@ switch ($action) {
                 $idProject = $_GET["idProject"];
                 $projectController->DeleteMember($idUser,$idProject);
                 break;
-            
+            case "rolepermissions": 
+                $user_id = $_GET["userId"];
+                $project_id = $_GET["projectId"];
+                $role = $_POST["role"];
+                $permissions = $_POST["permissions"];
+                $TaskController->EditRoleAndPermission($user_id,$project_id,$role,$permissions);
+                break;
 }
