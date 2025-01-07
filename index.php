@@ -3,11 +3,13 @@ require_once "config.php";
 require_once "controller/ProjectController.php";
 require_once "controller/UserController.php";
 require_once "controller/TaskController.php";
+require_once "controller/RoleController.php";
 
 
 $projectController = new ProjectController();
 $userController = new UserController();
 $TaskController = new TaskController();
+$RoleController = new RoleController();
 
 $action = $_GET["action"]??"SignFrom";
 
@@ -143,11 +145,21 @@ switch ($action) {
                 $idProject = $_GET["idProject"];
                 $projectController->DeleteMember($idUser,$idProject);
                 break;
-            case "rolepermissions": 
+            case "editrole":
                 $user_id = $_GET["userId"];
                 $project_id = $_GET["projectId"];
                 $role = $_POST["role"];
+                $TaskController->EditRole($user_id,$project_id,$role);
+                break;
+            case "permissions":
+                $TaskController->permissions();
+                break;
+            case "editpermissions" :
+                $roleId = $_POST["role"];
                 $permissions = $_POST["permissions"];
-                $TaskController->EditRoleAndPermission($user_id,$project_id,$role,$permissions);
+                $RoleController->EditRolePermissions($roleId,$permissions);
+                break;
+            case "createRole" : 
+                $RoleController->EditRolePermissions($roleId,$permissions);
                 break;
 }

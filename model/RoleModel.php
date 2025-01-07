@@ -22,7 +22,29 @@ class Role{
 
             $role = $stmt->fetch(PDO::FETCH_ASSOC);
             return $role ? $role['role_id'] : null;
-            
+
+        } catch (PDOException $e) {
+            error_log("Error fetching role: " . $e->getMessage());
+            return null;
+        }
+    }
+
+    public function EditePermissions($roleId,$permissions){
+        try {
+            $query = "DELETE FROM role_permissions WHERE role_id = :role_id;";
+            $stmt = $this->pdo->prepare($query);
+            $stmt->bindParam(':role_id', $roleId, PDO::PARAM_INT);
+            $stmt->execute();
+
+            $query = "INSERT INTO role_permissions (role_id,permission_id) values (:role_id, :permission_id);";
+            $stmt = $this->pdo->prepare($query);
+
+            foreach ($permissions as $permission) {
+                $stmt->execute([
+                    'role_id'=>$roleId,
+                    'permission_id'=>$permission
+                ]);
+            }
         } catch (PDOException $e) {
             error_log("Error fetching role: " . $e->getMessage());
             return null;

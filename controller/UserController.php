@@ -24,7 +24,7 @@ class UserController {
             $user = $this->UserModel->getUserByEmail($email);
             session_start();
             $_SESSION['user_email'] = $email;
-            $_SESSION['user_role'] = $user['role'];
+            $_SESSION['user_role'] = $user['role_id'];
             $_SESSION['user_id'] = $user['id'];
             header("location: index.php?action=list");
             exit;
@@ -42,8 +42,8 @@ class UserController {
         $user = $this->UserModel->getUserByEmail($email);
         
             $_SESSION['user_email'] = $email;
-            $_SESSION['user_id'] = $user['id'];
-            $_SESSION['user_role'] = $user['role'];
+            $_SESSION['user_id'] = $user['user_id'];
+            $_SESSION['user_role'] = $user['role_id'];
         header("location: index.php?action=list");
     }
    

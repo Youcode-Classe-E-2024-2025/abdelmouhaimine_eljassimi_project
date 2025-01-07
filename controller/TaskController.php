@@ -29,16 +29,15 @@ class TaskController {
     public function showProjects($projectId) {
         $tasks = $this->taskModel->getByProjectId($projectId);
         $members = $this->taskModel->getProjectMembers($projectId);
-        
+
         if (!isset($_SESSION['user_id'])) {
             die("User not logged in.");
         }
-        
-    
         $role_id = $this->RoleModel->getRole($_SESSION['user_id'], $projectId);
         if (!$role_id) {
             die("No role found for user in project $projectId");
         }
+
         $permissions = $this->PermissionModel->getPermissions($role_id);
         if (!$permissions) {
             die("No permissions found for role $role_id");
@@ -50,6 +49,9 @@ class TaskController {
     public function ChartTasks($projectId){
         $tasks = $this->taskModel->getByProjectId($projectId);
         require "view/dashboard.php";
+    }
+    public function permissions(){
+        require "view/permissions.php";
     }
     public function afficheTaksForm(){
         $UserModel = new User();
@@ -70,8 +72,8 @@ class TaskController {
         header("location: index.php?action=kanban&id=". $idProject);
     }
 
-    public function EditRoleAndPermission($user_id,$project_id,$role,$permissions){
-        $this->taskModel->editRolePermission($user_id,$project_id,$role,$permissions);
+    public function EditRole($user_id,$project_id,$role){
+        $this->taskModel->editRolePermission($user_id,$project_id,$role,);
         header("location: index.php?action=kanban&id=". $project_id);
     }
 }

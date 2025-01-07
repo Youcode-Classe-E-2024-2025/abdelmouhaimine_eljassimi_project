@@ -60,13 +60,12 @@ if (!isset($_SESSION['user_email'])) {
                     Projects
                 </a>
                 <?php $action = $_GET["action"]?>
-                <?php if ($_SESSION['user_role'] === 'admin' || $action == "list"): ?>
+                <?php if ($_SESSION['user_role'] == '1'  || $_SESSION['user_role'] == '2'):?>
                                 <?php $id = $_GET["id"] ?>
                             <a href="?action=dashboard&id=<?=$id?>" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Dashboard</a>
                             <?php endif; ?>
          </div>
     </nav>
-
     <!-- Ajuster le padding-top du main content pour la barre de navigation mobile -->
     <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-900 lg:pt-0 pt-16">
     <nav class="bg-gray-800 border-b border-gray-700">
@@ -80,9 +79,12 @@ if (!isset($_SESSION['user_email'])) {
                         <div class="ml-10 flex items-baseline space-x-4">
                             <a href="?action=kanban&id=11" class="text-white px-3 py-2 rounded-md text-sm font-medium">Tasks</a>
                             <a href="?action=list" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Projects</a>
-                            <?php if ($_SESSION['user_role'] === 'admin' || $action != "list"): ?>
+                            <?php if($_SESSION['user_role'] == '1' || $_SESSION['user_role'] == '2'): ?>
                                 <?php $id = isset($_GET["id"]) ? $_GET["id"] : ''; ?>
                             <a href="?action=dashboard&id=<?=$id?>" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Dashboard</a>
+                            <?php endif; ?>
+                            <?php if($_SESSION['user_role'] == '1' || $_SESSION['user_role'] == '2'): ?>
+                            <a href="?action=permissions" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Permissions</a>
                             <?php endif; ?>
                         </div>
                     </div>
@@ -119,7 +121,6 @@ if (!isset($_SESSION['user_email'])) {
         </div>
     </nav>
 <script>
-
 document.addEventListener('DOMContentLoaded', function() {
     console.log('JavaScript loaded!'); // Debugging log
     const mobileMenuButton = document.getElementById('mobileMenuButton');

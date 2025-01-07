@@ -17,7 +17,9 @@ class ProjectController {
     }
 
     public function showProjects() {
-        $projects = $this->projectModel->getAll();
+        $userId = $_SESSION['user_id'];
+         $roleId = $_SESSION['user_role'];
+        $projects = $this->projectModel->getAll($userId, $roleId);
         require 'view/project_list.php';
     }
     public function showVisitorProjects(){

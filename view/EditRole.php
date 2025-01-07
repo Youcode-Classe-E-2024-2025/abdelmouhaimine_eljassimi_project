@@ -17,7 +17,7 @@
         $projectId = isset($_GET['idProject']) ? $_GET['idProject'] : null;
 ?>
 <body class="h-full flex items-center justify-center bg-[#111827] text-white font-['Inter']">
-    <form action="http://localhost/abdelmouhaimine_eljassimi_project/index.php?action=rolepermissions&userId=<?=$userId?>&projectId=<?=$projectId?>" method="POST" class="w-full max-w-md p-8 space-y-8 bg-gray-800 rounded-xl shadow-2xl">
+    <form action="http://localhost/abdelmouhaimine_eljassimi_project/index.php?action=editrole&userId=<?=$userId?>&projectId=<?=$projectId?>" method="POST" class="w-full max-w-md p-8 space-y-8 bg-gray-800 rounded-xl shadow-2xl">
         <h1 class="text-3xl font-bold text-center text-blue-500">Gestion des Rôles et Permissions</h1>
         
         <div class="space-y-6">
@@ -27,15 +27,6 @@
                     <option value="2">Chef de Projet</option>
                     <option value="3">Membre</option>
                 </select>
-            </div>
-
-            <div class="space-y-4">
-                <h2 class="text-xl font-semibold text-blue-400">Permissions</h2>
-                <select name="permissions[]" id="permissions" multiple required class="flex-1 px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 chosen-select">
-                    <option value="1">Créer une tâche</option>
-                    <option value="2">Éditer une tâche</option>
-                    <option value="3">Supprimer une tâche</option>
-               </select>
             </div>
         </div>
         <button type="submit" class="w-full px-4 py-2 text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-800 transition-colors duration-200">

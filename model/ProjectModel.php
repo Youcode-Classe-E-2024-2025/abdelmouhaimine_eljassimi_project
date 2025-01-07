@@ -33,14 +33,37 @@ class Project {
                     ':user_id' => $userId,
                 ]);
             }
+        
+        $stmt = $this->pdo->prepare("INSERT INTO user_project_roles (project_id, user_id, role_id) VALUES (:project_id, :user_id,:role_id)");
+            foreach ($user_id as $userId) {
+                $stmt->execute([
+                    ':project_id' =>  $projectId,
+                    ':user_id' => $userId,
+                    ':role_id' => 3
+                ]);
+            }
+
+        $stmt = $this->pdo->prepare("INSERT INTO user_project_roles (project_id, user_id, role_id) VALUES (:project_id, :user_id,:role_id)");
+                $stmt->execute([
+                    ':project_id' =>  $projectId,
+                    ':user_id' => $_SESSION["user_id"],
+                    ':role_id' => 2
+                ]);
     }
 
-    public function getAll() {
-        $sql = " SELECT projects.*  FROM projects  WHERE :role = 'admin' OR id IN ( SELECT project_id FROM project_members WHERE user_id = :user_id  );";
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->execute([':user_id' => $_SESSION['user_id'], ':role' => $_SESSION['user_role']]);
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    public function getAll($userId, $roleId) {
+        try {
+            $sql = "SELECT p.* FROM projects p  JOIN user_project_roles upr ON p.id = upr.project_id WHERE upr.user_id = :user_id AND upr.role_id = :role";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute([':user_id' => $userId, ':role' => $roleId]);
+    
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            error_log("Error fetching projects: " . $e->getMessage());
+            return [];
+        }
     }
+    
 
     public function getVisitorAll() { 
         $sql = " SELECT * FROM projects WHERE is_public = 0";

@@ -77,25 +77,22 @@ class Task {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function editRolePermission($user_id, $project_id, $role, $permissions) {
+    public function editRolePermission($user_id, $project_id, $role) {
         $sql = "UPDATE user_project_roles  SET role_id = :role_id WHERE user_id = :user_id AND project_id = :project_id;";
         $stmt = $this->pdo->prepare($sql);
+
         $stmt->execute([
             ':role_id' => htmlspecialchars($role),
             ':user_id' => htmlspecialchars($user_id),
             ':project_id' => htmlspecialchars($project_id)
         ]);
-    
-        $sql = "UPDATE user_project_permissions SET permission_id = :permission_id WHERE user_id = :user_id AND project_id = :project_id";
+
+        $sql = "UPDATE user_role SET role_id = :role_id WHERE user_id = :user_id";
         $stmt = $this->pdo->prepare($sql);
 
-        foreach ($permissions as $permission) {
             $stmt->execute([
-                ':permission_id' => htmlspecialchars($permission),
                 ':user_id' => htmlspecialchars($user_id),
-                ':project_id' => htmlspecialchars($project_id)
+                ':role_id' => htmlspecialchars($role)
             ]);
-        }
     }
-
 }

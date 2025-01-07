@@ -23,7 +23,7 @@ if (!isset($_SESSION['user_email'])) {
         <h1 class="text-3xl font-bold text-white">Projects</h1>
         <p class="mt-2 text-gray-400">Manage and track your ongoing projects</p>
       </div>
-      <?php if ($_SESSION['user_role'] === 'admin'): ?>
+      <?php if ($_SESSION['user_role'] == '2'): ?>
         <a href="?action=create" 
            class="inline-flex items-center px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white text-sm font-medium rounded-md transition duration-150 ease-in-out">
           <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -64,7 +64,7 @@ if (!isset($_SESSION['user_email'])) {
                 View Board
               </a>
               
-              <?php if ($_SESSION['user_role'] === 'admin'): ?>
+              <?php if ($_SESSION['user_role'] == '2'): ?>
                 <a href="view/project_edit_form.php?id=<?= $project["id"] ?>" 
                    class="inline-flex justify-center items-center px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white text-sm font-medium rounded-md transition">
                   Edit
