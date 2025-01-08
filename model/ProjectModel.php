@@ -105,5 +105,12 @@ class Project {
             ':user_id' => htmlspecialchars($idUser)
         ]);
     }
+
+    public function GetDescription($id){
+        $sql =" SELECT * FROM projects WHERE id = :id ";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute(["id"=>$id]);
+        return $stmt->fetch(PDO:: FETCH_ASSOC);
+    }
 }
 ?>

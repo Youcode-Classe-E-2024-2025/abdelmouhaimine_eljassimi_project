@@ -172,4 +172,8 @@ switch ($action) {
             case "editUserRole" : 
                 $RoleController->DisplayRole();
                 break;
+            case "Description" : 
+                $id =$_GET["id"];
+                $projectController->ShowDescription($id);
+                break;
 }

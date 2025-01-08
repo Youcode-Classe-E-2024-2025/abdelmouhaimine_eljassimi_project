@@ -1,19 +1,25 @@
 <?php 
 require_once("model/tagModel.php");
 $tags = new tag();
-
+ $id=$_GET["id"]; 
  ?>
 <?php include("header.php") ?>
 <div class="flex-1 flex overflow-hidden bg-gray-900 min-h-screen">
     <!-- Sidebar -->
     <aside class="w-64 bg-gray-800 border-r border-gray-700 overflow-y-auto hidden lg:block">
         <div class="p-6">
+        <h2 class="text-xl font-bold text-white mb-2">Description</h2>
+        <a href="#" class="flex items-center px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded-lg transition-colors">
+            <a href="?action=Description&id=<?=$id?>" class="flex items-center px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded-lg transition-colors">
+                    Description du projet
+                </a>
+        </div>
+        <div class="p-6">
             <h2 class="text-xl font-bold text-white mb-6">Projects</h2>
             <nav class="space-y-3">
-                <a href="#" class="flex items-center px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded-lg transition-colors">
                     <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        </svg>
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                    </svg>
                     Website Redesign
                 </a>
                 <a href="#" class="flex items-center px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded-lg transition-colors">
@@ -31,6 +37,7 @@ $tags = new tag();
             </nav>
         </div>
         <div class="p-6 border-t border-gray-700">
+
             <h2 class="text-xl font-bold text-white mb-6">Team Members</h2>
             <div class="space-y-4">
             <?php forEach($members as $member): ?>
@@ -76,7 +83,6 @@ $tags = new tag();
                     <h1 class="text-2xl font-bold text-white">Task Board</h1>
                     <p class="text-gray-400 mt-1">Track your project's progress</p>
                 </div>
-                <?php $id=$_GET["id"]; ?>
                 <?php foreach ($permissions as $permission): ?>
                 <?php if ($permission['name'] === 'createTask'): ?>
                 <a href="?action=create_task&id=<?=$id?>"

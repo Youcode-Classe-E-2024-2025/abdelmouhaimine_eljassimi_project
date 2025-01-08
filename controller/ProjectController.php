@@ -43,4 +43,10 @@ class ProjectController {
         $this->projectModel->deletemember($idUser,$idProject);
         header("location: index.php?action=kanban&id=". $idProject);
     }
+
+    public function ShowDescription($id){
+        $description = $this->projectModel->GetDescription($id);
+        require "view/projectDescription.php";
+
+    }
 }
