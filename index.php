@@ -5,6 +5,8 @@ require_once "controller/UserController.php";
 require_once "controller/TaskController.php";
 require_once "controller/RoleController.php";
 
+require 'vendor/autoload.php';
+
 
 $projectController = new ProjectController();
 $userController = new UserController();
@@ -24,7 +26,10 @@ switch ($action) {
                 die('CSRF token validation failed.');
             }
             $name = $_POST["name"];
-            $description = $_POST["description"];
+            $descriptionn = $_POST["description"];
+            $parsedown = new Parsedown();
+            $parsedown->setSafeMode(true);
+            $description = $parsedown->text($descriptionn);
             $accesiblity = $_POST["accesibility"];
             $users = $_POST["users"];
             $projectController->createProject($name, $description,$users,$accesiblity);
@@ -160,6 +165,11 @@ switch ($action) {
                 $RoleController->EditRolePermissions($roleId,$permissions);
                 break;
             case "createRole" : 
-                $RoleController->EditRolePermissions($roleId,$permissions);
+                $rolename = $_POST["rolename"];
+                $permissions = $_POST["permissions"];
+                $RoleController->CreateRole($rolename,$permissions);
+                break;
+            case "editUserRole" : 
+                $RoleController->DisplayRole();
                 break;
 }

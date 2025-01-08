@@ -48,11 +48,13 @@ $tags = new tag();
                         <p class="text-sm font-medium text-white"><?=$member["name"]?></p>
                         <div>
                         <?php foreach ($permissions as $permission): ?>
-                        <?php if ($permission['name'] === 'delete'): ?>
+                        <?php if ($permission['name'] === 'deleteTask'): ?>
                             <a href="?action=deleteUser&idUser=<?=$member["id"]?>&idProject=<?=$id?>" class="text-red-400 hover:text-red-300 transition-colors">
                                 <i class='bx bx-trash text-xl'></i>
                             </a>
-                            <a href="view/EditRole.php?idUser=<?=$member["id"]?>&idProject=<?=$id?>" class="text-blue-400 hover:text-blue-300 transition-colors">
+                            <?php endif;?>
+                            <?php if ($permission['name'] === 'editTask'): ?>
+                            <a href="?action=editUserRole&idUser=<?=$member["id"]?>&idProject=<?=$id?>" class="text-blue-400 hover:text-blue-300 transition-colors">
                                 <i class='bx bxs-edit text-xl'></i>
                             </a>
                             <?php endif;?>
@@ -76,7 +78,7 @@ $tags = new tag();
                 </div>
                 <?php $id=$_GET["id"]; ?>
                 <?php foreach ($permissions as $permission): ?>
-                <?php if ($permission['name'] === 'create'): ?>
+                <?php if ($permission['name'] === 'createTask'): ?>
                 <a href="?action=create_task&id=<?=$id?>"
                    class="inline-flex items-center px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white font-medium rounded-lg transition-colors">
                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -110,13 +112,13 @@ $tags = new tag();
                                 <h3 class="font-medium text-white mb-2"><?= $todoTask["title"] ?></h3>
                                 <div class="flex space-x-2 opacity-0 group-hover:opacity-100 transition-opacity">
                                 <?php foreach ($permissions as $permission): ?>
-                                    <?php if ($permission['name'] === 'delete'): ?>
+                                    <?php if ($permission['name'] === 'deleteTask'): ?>
                                     <a href="?action=deleteTask&idTask=<?=$todoTask["id"]?>&idProject=<?=$id?>" 
                                        class="text-red-400 hover:text-red-300 transition-colors">
                                         <i class='bx bx-trash text-xl'></i>
                                     </a>
                                     <?php endif;?>
-                                    <?php if ($permission['name'] === 'edit'): ?>
+                                    <?php if ($permission['name'] === 'editTask'): ?>
                                     <a href="view/task_edit_form.php?idTask=<?=$todoTask["id"]?>&idProject=<?=$id?>" 
                                        class="text-blue-400 hover:text-blue-300 transition-colors">
                                         <i class='bx bxs-edit text-xl'></i>
@@ -164,13 +166,13 @@ $tags = new tag();
                                 <h3 class="font-medium text-white mb-2"><?= $doingTask["title"] ?></h3>
                                 <div class="flex space-x-2 opacity-0 group-hover:opacity-100 transition-opacity">
                                    <?php foreach ($permissions as $permission): ?>
-                                    <?php if ($permission['name'] === 'delete'): ?>
+                                    <?php if ($permission['name'] === 'deleteTask'): ?>
                                     <a href="?action=deleteTask&idTask=<?=$doingTask["id"]?>&idProject=<?=$id?>" 
                                        class="text-red-400 hover:text-red-300 transition-colors">
                                         <i class='bx bx-trash text-xl'></i>
                                     </a>
                                     <?php endif;?>
-                                    <?php if ($permission['name'] === 'edit'): ?>
+                                    <?php if ($permission['name'] === 'editTask'): ?>
                                     <a href="view/task_edit_form.php?idTask=<?=$doingTask["id"]?>&idProject=<?=$id?>" 
                                        class="text-blue-400 hover:text-blue-300 transition-colors">
                                         <i class='bx bxs-edit text-xl'></i>
@@ -218,13 +220,13 @@ $tags = new tag();
                             <h3 class="font-medium text-white mb-2"><?= $reviewTask["title"] ?></h3>
                                <div class="flex space-x-2 opacity-0 group-hover:opacity-100 transition-opacity">
                                    <?php foreach ($permissions as $permission): ?>
-                                    <?php if ($permission['name'] === 'delete'): ?>
+                                    <?php if ($permission['name'] === 'deleteTask'): ?>
                                     <a href="?action=deleteTask&idTask=<?=$reviewTask["id"]?>&idProject=<?=$id?>" 
                                        class="text-red-400 hover:text-red-300 transition-colors">
                                         <i class='bx bx-trash text-xl'></i>
                                     </a>
                                     <?php endif;?>
-                                    <?php if ($permission['name'] === 'edit'): ?>
+                                    <?php if ($permission['name'] === 'editTask'): ?>
                                     <a href="view/task_edit_form.php?idTask=<?=$reviewTask["id"]?>&idProject=<?=$id?>" 
                                        class="text-blue-400 hover:text-blue-300 transition-colors">
                                         <i class='bx bxs-edit text-xl'></i>
@@ -270,13 +272,13 @@ $tags = new tag();
                         <h3 class="font-medium text-white mb-2"><?= $doingTask["title"] ?></h3>
                                 <div class="flex space-x-2 opacity-0 group-hover:opacity-100 transition-opacity">
                                    <?php foreach ($permissions as $permission): ?>
-                                    <?php if ($permission['name'] === 'delete'): ?>
+                                    <?php if ($permission['name'] === 'deleteTask'): ?>
                                     <a href="?action=deleteTask&idTask=<?=$doingTask["id"]?>&idProject=<?=$id?>" 
                                        class="text-red-400 hover:text-red-300 transition-colors">
                                         <i class='bx bx-trash text-xl'></i>
                                     </a>
                                     <?php endif;?>
-                                    <?php if ($permission['name'] === 'edit'): ?>
+                                    <?php if ($permission['name'] === 'editTask'): ?>
                                     <a href="view/task_edit_form.php?idTask=<?=$doingTask["id"]?>&idProject=<?=$id?>" 
                                        class="text-blue-400 hover:text-blue-300 transition-colors">
                                         <i class='bx bxs-edit text-xl'></i>

@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit5cd48b6645860e6f71f44390d4549abe
+class ComposerStaticInit153a9c44ed2ea3ec6d2aaf904036af64
 {
     public static $files = array (
         '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
@@ -107,6 +107,16 @@ class ComposerStaticInit5cd48b6645860e6f71f44390d4549abe
         ),
     );
 
+    public static $prefixesPsr0 = array (
+        'P' => 
+        array (
+            'Parsedown' => 
+            array (
+                0 => __DIR__ . '/..' . '/erusev/parsedown',
+            ),
+        ),
+    );
+
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'Google_AccessToken_Revoke' => __DIR__ . '/..' . '/google/apiclient/src/aliases.php',
@@ -134,9 +144,10 @@ class ComposerStaticInit5cd48b6645860e6f71f44390d4549abe
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit5cd48b6645860e6f71f44390d4549abe::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit5cd48b6645860e6f71f44390d4549abe::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit5cd48b6645860e6f71f44390d4549abe::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit153a9c44ed2ea3ec6d2aaf904036af64::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit153a9c44ed2ea3ec6d2aaf904036af64::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit153a9c44ed2ea3ec6d2aaf904036af64::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit153a9c44ed2ea3ec6d2aaf904036af64::$classMap;
 
         }, null, ClassLoader::class);
     }

@@ -24,8 +24,9 @@
             <div>
                 <label for="role" class="block text-sm font-medium text-gray-300 mb-2">Rôle de l'utilisateur</label>
                 <select id="role" name="role" class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
-                    <option value="2">Chef de Projet</option>
-                    <option value="3">Membre</option>
+                    <?php foreach ($roles as $role): ?>
+                    <option value="<?= $role["id"]?>"><?= $role["name"]?></option>
+                    <?php  endforeach; ?>
                 </select>
             </div>
         </div>

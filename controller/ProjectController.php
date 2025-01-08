@@ -5,9 +5,11 @@ require_once "model/ProjectModel.php";
 
 class ProjectController {
     private $projectModel;
+    private $PermissionModel;
 
     public function __construct() {
-        $this->projectModel = new Project(); 
+        $this->projectModel = new Project();
+        $this->PermissionModel = new Permissions();
     }
 
 
@@ -20,6 +22,7 @@ class ProjectController {
         $userId = $_SESSION['user_id'];
          $roleId = $_SESSION['user_role'];
         $projects = $this->projectModel->getAll($userId, $roleId);
+        $permissions = $this->PermissionModel->getPermissions($roleId);
         require 'view/project_list.php';
     }
     public function showVisitorProjects(){

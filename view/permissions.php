@@ -15,9 +15,9 @@
                     <div>
                         <h2 class="text-xl font-semibold text-blue-400">Permissions</h2>
                         <select name="permissions[]" id="permissions" multiple required class="flex-1 px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 chosen-select">
-                            <option value="1">Créer une tâche</option>
-                            <option value="2">Éditer une tâche</option>
-                            <option value="3">Supprimer une tâche</option>
+                            <?php foreach ($permissions as $permission): ?>
+                            <option value="<?= $permission["id"]?>"><?= $permission["name"]?></option>
+                            <?php endforeach; ?>
                     </select>
                     </div>
                 </div>
@@ -35,14 +35,14 @@
                 <div class="flex flex-col gap-4">
                     <div>
                         <label for="roleName" class="block text-sm font-medium text-gray-400 mb-1">Role : </label>
-                         <input type="text" class="block text-sm font-medium text-gray-400 mb-1 w-full bg-gray-900">
+                         <input type="text" name="rolename" class="block text-sm font-medium text-gray-400 mb-1 w-full bg-gray-900">
                     </div>
                     <div>
                         <h2 class="text-xl font-semibold text-blue-400">Permissions</h2>
                         <select name="permissions[]" id="permissions" multiple required class="flex-1 px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 chosen-select">
-                            <option value="1">Créer une tâche</option>
-                            <option value="2">Éditer une tâche</option>
-                            <option value="3">Supprimer une tâche</option>
+                        <?php foreach ($permissions as $permission): ?>
+                            <option value="<?= $permission["id"]?>"><?= $permission["name"]?></option>
+                            <?php endforeach; ?>
                     </select>
                     </div>
                 </div>

@@ -53,11 +53,17 @@ class Project {
 
     public function getAll($userId, $roleId) {
         try {
-            $sql = "SELECT p.* FROM projects p  JOIN user_project_roles upr ON p.id = upr.project_id WHERE upr.user_id = :user_id AND upr.role_id = :role";
-            $stmt = $this->pdo->prepare($sql);
-            $stmt->execute([':user_id' => $userId, ':role' => $roleId]);
-    
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            if($roleId != 1){
+                $sql = "SELECT p.* FROM projects p  JOIN user_project_roles upr ON p.id = upr.project_id WHERE upr.user_id = :user_id AND upr.role_id = :role";
+                $stmt = $this->pdo->prepare($sql);
+                $stmt->execute([':user_id' => $userId, ':role' => $roleId]);
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            }else {
+                $sql = "SELECT * FROM projects";
+                $stmt = $this->pdo->prepare($sql);
+                $stmt->execute();
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            }
         } catch (PDOException $e) {
             error_log("Error fetching projects: " . $e->getMessage());
             return [];

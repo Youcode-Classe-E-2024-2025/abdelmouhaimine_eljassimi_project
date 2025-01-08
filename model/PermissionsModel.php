@@ -28,6 +28,13 @@ class Permissions{
             return [];
         }
     }
+
+    public function getAllPermissions(){
+        $sql = "SELECT * FROM permissions";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
     
 
     

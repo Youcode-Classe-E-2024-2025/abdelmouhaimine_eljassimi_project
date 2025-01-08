@@ -51,6 +51,7 @@ class TaskController {
         require "view/dashboard.php";
     }
     public function permissions(){
+        $permissions = $this->PermissionModel->getAllPermissions();
         require "view/permissions.php";
     }
     public function afficheTaksForm(){

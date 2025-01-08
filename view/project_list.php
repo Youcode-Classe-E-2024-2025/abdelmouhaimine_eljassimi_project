@@ -1,4 +1,4 @@
-<?php
+<div?php
 if (!isset($_SESSION['user_email'])) {
     header("Location: index.php?action=SignFrom");
     exit;
@@ -23,7 +23,8 @@ if (!isset($_SESSION['user_email'])) {
         <h1 class="text-3xl font-bold text-white">Projects</h1>
         <p class="mt-2 text-gray-400">Manage and track your ongoing projects</p>
       </div>
-      <?php if ($_SESSION['user_role'] == '2'): ?>
+      <?php foreach ($permissions as $permission): ?>
+        <?php if ($permission['name'] =='createProject'): ?>
         <a href="?action=create" 
            class="inline-flex items-center px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white text-sm font-medium rounded-md transition duration-150 ease-in-out">
           <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -32,8 +33,8 @@ if (!isset($_SESSION['user_email'])) {
           Add New Project
         </a>
       <?php endif; ?>
+      <?php endforeach; ?>
     </div>
-
     <!-- Projects Grid -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
       <?php foreach ($projects as $project): ?>
@@ -46,7 +47,7 @@ if (!isset($_SESSION['user_email'])) {
               </span>
             </div>
             
-            <p class="text-gray-400 mb-4 line-clamp-2"><?= $project["description"] ?></p>
+            <div class="text-gray-400 mb-4 line-clamp-2"><?= htmlspecialchars_decode($project["description"]) ?></div>
             
             <div class="flex items-center text-sm text-gray-500">
               <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -64,16 +65,19 @@ if (!isset($_SESSION['user_email'])) {
                 View Board
               </a>
               
-              <?php if ($_SESSION['user_role'] == '2'): ?>
-                <a href="view/project_edit_form.php?id=<?= $project["id"] ?>" 
-                   class="inline-flex justify-center items-center px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white text-sm font-medium rounded-md transition">
-                  Edit
-                </a>
-                <a href="?action=delete_project&id=<?= $project["id"] ?>" 
-                   class="inline-flex justify-center items-center px-4 py-2 bg-red-500 hover:bg-red-600 text-white text-sm font-medium rounded-md transition">
-                  Delete
-                </a>
-              <?php endif; ?>
+              <?php foreach($permissions as $permission): ?>
+                <?php if ($permission['name'] === 'editProject'): ?>
+                  <a href="view/project_edit_form.php?id=<?= $project["id"] ?>" 
+                    class="inline-flex justify-center items-center px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white text-sm font-medium rounded-md transition">
+                    Edit
+                  </a>
+                <?php endif; ?>
+              <?php endforeach; ?>
+              <?php foreach ($permissions as $permission): ?>
+                  <?php if ($permission['name'] === 'deleteProject'): ?>
+                   <a href="?action=delete_project&id=<?= $project["id"] ?>"  class="inline-flex justify-center items-center px-4 py-2 bg-red-500 hover:bg-red-600 text-white text-sm font-medium rounded-md transition">Delete </a>
+                  <?php endif; ?>
+              <?php endforeach; ?>
             </div>
           </div>
         </div>
