@@ -30,6 +30,11 @@ class ProjectController {
         require 'view/project_list.php';
     }
 
+    public function ShowEditForm($id){
+        require 'view/project_edit_form.php';
+        exit();
+    }
+
     public function editProject($name,$description,$id) {
         $this->projectModel->update($name, $description, $id);
         header("location: index.php?action=list");

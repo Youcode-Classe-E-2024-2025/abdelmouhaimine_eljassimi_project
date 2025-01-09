@@ -42,6 +42,13 @@ class Task {
                     ':tag_id' => $tag,
                 ]);
             }
+
+            $stmt = $this->pdo->prepare("INSERT INTO activities (project_id, task_id, user_id, action,details)VALUES (:project_id, :task_id, :user_id, 'create task','Created a new task');");
+            $stmt->execute([
+                ':project_id' =>  $projectId,
+                ':task_id'=> $taskId,
+                ':user_id' => $_SESSION["user_id"],
+            ]);
     }
 
     public function getByProjectId($projectId) {
@@ -52,14 +59,22 @@ class Task {
     }
 
 
-    public function delete($id){
+    public function delete($id,$idProject){
+
+        $stmt = $this->pdo->prepare("INSERT INTO activities (project_id, task_id, user_id, action,details)VALUES (:project_id, :task_id, :user_id, 'delete task','Delete task');");
+        $stmt->execute([
+            ':project_id'=>$idProject,
+            ':task_id' =>  $id,
+            ':user_id' => $_SESSION["user_id"],
+        ]);
+
         $sql = 'DELETE FROM tasks WHERE id=:id';
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([
             ':id' => $id
         ]);
     }
-    public function edit($idtask, $title, $description, $status) {
+    public function edit($idProject,$idtask, $title, $description, $status) {
         $sql = 'UPDATE tasks SET title = :title, description = :description, status = :status WHERE id = :idtask';
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([
@@ -67,6 +82,12 @@ class Task {
             ':title' => htmlspecialchars($title),
             ':status' => htmlspecialchars($status),
             ':description' => htmlspecialchars($description)
+        ]);
+        $stmt = $this->pdo->prepare("INSERT INTO activities (project_id, task_id, user_id, action,details) VALUES (:project_id, :task_id, :user_id, 'edit task','Update task');");
+        $stmt->execute([
+            ':task_id'=> $idtask,
+            ':project_id'=> $idProject,
+            ':user_id' => $_SESSION["user_id"],
         ]);
     }
 
@@ -97,7 +118,7 @@ class Task {
     }
 
     public function getTimeline($id){
-        $sql = "SELECT * FROM tasks WHERE status = 'done' AND project_id = :project_id; ";
+        $sql = "SELECT u.name AS user, a.action, a.timestamp  FROM activities a JOIN users u ON a.user_id = u.id WHERE a.project_id = :project_id ORDER BY a.timestamp DESC";     
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute(["project_id"=>$id]);
         return $stmt->fetchAll(PDO:: FETCH_ASSOC);

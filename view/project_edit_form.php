@@ -4,7 +4,7 @@ if (!isset($_SESSION['user_email'])) {
     exit;
 }
 require_once "csrfToken.php";
-require_once "../config.php";
+require_once "./config.php";
 $database = new Database();
 $db = $database->getConnection();
 

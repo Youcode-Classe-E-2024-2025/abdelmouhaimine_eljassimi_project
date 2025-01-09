@@ -49,6 +49,12 @@ class Project {
                     ':user_id' => $_SESSION["user_id"],
                     ':role_id' => 2
                 ]);
+
+        $stmt = $this->pdo->prepare("INSERT INTO activities (project_id, task_id, user_id, action,details)VALUES (:project_id, NULL, :user_id, 'create','Created a new project');");
+                $stmt->execute([
+                    ':project_id' =>  $projectId,
+                    ':user_id' => $_SESSION["user_id"],
+                ]);
     }
 
     public function getAll($userId, $roleId) {
@@ -88,6 +94,12 @@ class Project {
             ':description' => htmlspecialchars($description),
             ':id' => htmlspecialchars($id)
         ]);
+
+        $stmt = $this->pdo->prepare("INSERT INTO activities (project_id, task_id, user_id, action,details)VALUES (:project_id, NULL, :user_id, 'edit','Upadate project');");
+        $stmt->execute([
+            ':project_id' =>  $id,
+            ':user_id' => $_SESSION["user_id"],
+        ]);
     }
     public function delete($id) {
         $sql = "DELETE FROM projects WHERE id= :id";
@@ -95,6 +107,13 @@ class Project {
         $stmt->execute([
             ':id' => htmlspecialchars($id)
         ]);
+
+        $stmt = $this->pdo->prepare("INSERT INTO activities (project_id, task_id, user_id, action,details)VALUES (:project_id, NULL, :user_id, 'delete','Delete project');");
+        $stmt->execute([
+            ':project_id' =>  $id,
+            ':user_id' => $_SESSION["user_id"],
+        ]);
+
     }
 
     public function deletemember($idUser,$idProject){

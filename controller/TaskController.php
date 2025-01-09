@@ -64,11 +64,11 @@ class TaskController {
     }
 
     public function deleteTask($idTask,$idProject) {
-        $this->taskModel->delete($idTask);
+        $this->taskModel->delete($idTask,$idProject);
         header("location: index.php?action=kanban&id=". $idProject);
     }
     public function EditTask($idProject,$idTask,$name, $description,$status){
-        $this->taskModel->edit($idTask,$name,$description,$status);
+        $this->taskModel->edit($idProject,$idTask,$name,$description,$status);
         header("location: index.php?action=kanban&id=". $idProject);
     }
 

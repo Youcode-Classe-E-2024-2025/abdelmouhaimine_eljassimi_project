@@ -1,7 +1,7 @@
 <?php
 if (!isset($_SESSION['user_email'])) {
-    header("Location: index.php?action=SignFrom");
-    exit;
+  header("Location: index.php?action=SignFrom");
+  exit;
 }
 ?>
 <?php include("header.php") ?>
@@ -67,7 +67,7 @@ if (!isset($_SESSION['user_email'])) {
               
               <?php foreach($permissions as $permission): ?>
                 <?php if ($permission['name'] === 'editProject'): ?>
-                  <a href="view/project_edit_form.php?id=<?= $project["id"] ?>" 
+                  <a href="?action=editProject&id=<?= $project["id"] ?>" 
                     class="inline-flex justify-center items-center px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white text-sm font-medium rounded-md transition">
                     Edit
                   </a>
