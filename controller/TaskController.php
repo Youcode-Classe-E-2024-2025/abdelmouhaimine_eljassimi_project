@@ -51,6 +51,7 @@ class TaskController {
     }
     public function permissions(){
         $permissions = $this->PermissionModel->getAllPermissions();
+        $roles = $this->RoleModel->role();
         require "view/permissions.php";
     }
     public function afficheTaksForm(){
