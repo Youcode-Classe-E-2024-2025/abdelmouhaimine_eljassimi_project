@@ -112,5 +112,11 @@ class Project {
         $stmt->execute(["id"=>$id]);
         return $stmt->fetch(PDO:: FETCH_ASSOC);
     }
+    public function GenerateSheet($id) {
+        $sql = "SELECT  p.name AS project_name,  t.title AS task_name, t.status,   t.created_at FROM projects p JOIN tasks t ON t.project_id = p.id WHERE p.id = :id";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute(['id' => $id]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
 ?>

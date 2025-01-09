@@ -44,8 +44,7 @@ class TaskController {
         }
         require "view/kanban.php";
     }
-    
-    
+
     public function ChartTasks($projectId){
         $tasks = $this->taskModel->getByProjectId($projectId);
         require "view/dashboard.php";
@@ -76,5 +75,10 @@ class TaskController {
     public function EditRole($user_id,$project_id,$role){
         $this->taskModel->editRolePermission($user_id,$project_id,$role,);
         header("location: index.php?action=kanban&id=". $project_id);
+    }
+
+    public function timeline($id){
+        $timelines = $this->taskModel->getTimeline($id);
+        require "view/timeline.php";
     }
 }

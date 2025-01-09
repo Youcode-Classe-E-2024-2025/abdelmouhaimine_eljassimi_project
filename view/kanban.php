@@ -8,11 +8,14 @@ $tags = new tag();
     <!-- Sidebar -->
     <aside class="w-64 bg-gray-800 border-r border-gray-700 overflow-y-auto hidden lg:block">
         <div class="p-6">
-        <h2 class="text-xl font-bold text-white mb-2">Description</h2>
-        <a href="#" class="flex items-center px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded-lg transition-colors">
+        <h2 class="text-xl font-bold text-white mb-2">Project Details</h2>
             <a href="?action=Description&id=<?=$id?>" class="flex items-center px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded-lg transition-colors">
                     Description du projet
                 </a>
+            <a href="?action=Timeline&id=<?=$id?>" class="flex items-center px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded-lg transition-colors">
+                    Timeline du projet
+                </a>
+                <a href="?action=googleSheet&id=<?=$id?>">Generate Google Sheet</a>
         </div>
         <div class="p-6">
             <h2 class="text-xl font-bold text-white mb-6">Projects</h2>
@@ -273,19 +276,19 @@ $tags = new tag();
                     </div>
                     <div class="space-y-4">
                         <?php foreach ($doneTasks as $doneTask):?>
-                            <?php   $tag = $tags->getTaskTag($doingTask['id']); ?>
+                            <?php   $tag = $tags->getTaskTag($doneTask['id']); ?>
                         <div class="group bg-gray-700 hover:bg-gray-600 rounded-lg p-4 transition-all mb-4" draggable="true" ondragstart="drag(event)" id="task-<?= $doneTask['id'] ?>">
-                        <h3 class="font-medium text-white mb-2"><?= $doingTask["title"] ?></h3>
+                        <h3 class="font-medium text-white mb-2"><?= $doneTask["title"] ?></h3>
                                 <div class="flex space-x-2 opacity-0 group-hover:opacity-100 transition-opacity">
                                    <?php foreach ($permissions as $permission): ?>
                                     <?php if ($permission['name'] === 'deleteTask'): ?>
-                                    <a href="?action=deleteTask&idTask=<?=$doingTask["id"]?>&idProject=<?=$id?>" 
+                                    <a href="?action=deleteTask&idTask=<?=$doneTask["id"]?>&idProject=<?=$id?>" 
                                        class="text-red-400 hover:text-red-300 transition-colors">
                                         <i class='bx bx-trash text-xl'></i>
                                     </a>
                                     <?php endif;?>
                                     <?php if ($permission['name'] === 'editTask'): ?>
-                                    <a href="view/task_edit_form.php?idTask=<?=$doingTask["id"]?>&idProject=<?=$id?>" 
+                                    <a href="view/task_edit_form.php?idTask=<?=$doneTask["id"]?>&idProject=<?=$id?>" 
                                        class="text-blue-400 hover:text-blue-300 transition-colors">
                                         <i class='bx bxs-edit text-xl'></i>
                                     </a>

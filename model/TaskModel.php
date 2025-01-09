@@ -95,4 +95,11 @@ class Task {
                 ':role_id' => htmlspecialchars($role)
             ]);
     }
+
+    public function getTimeline($id){
+        $sql = "SELECT * FROM tasks WHERE status = 'done' AND project_id = :project_id; ";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute(["project_id"=>$id]);
+        return $stmt->fetchAll(PDO:: FETCH_ASSOC);
+    }
 }

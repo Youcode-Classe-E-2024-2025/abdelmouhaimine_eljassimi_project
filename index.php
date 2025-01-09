@@ -176,4 +176,12 @@ switch ($action) {
                 $id =$_GET["id"];
                 $projectController->ShowDescription($id);
                 break;
+            case "Timeline": 
+                $id =$_GET["id"];
+                $TaskController->timeline($id);
+            break;
+            case "googleSheet" :
+                $id =$_GET["id"];
+                $projectController->googleSheet($id);
+                break;
 }

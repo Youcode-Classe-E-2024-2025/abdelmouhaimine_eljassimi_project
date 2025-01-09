@@ -49,4 +49,8 @@ class ProjectController {
         require "view/projectDescription.php";
 
     }
+    public function googleSheet($id){
+        $projects = $this->projectModel->GenerateSheet($id);
+        require "google-sheet.php";
+    }
 }
