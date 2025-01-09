@@ -7,8 +7,9 @@ $tags = new tag();
 <div class="flex-1 flex overflow-hidden bg-gray-900 min-h-screen">
     <!-- Sidebar -->
     <aside class="w-64 bg-gray-800 border-r border-gray-700 overflow-y-auto hidden lg:block">
+       <?php if ($_SESSION['user_role'] == '1'  || $_SESSION['user_role'] == '2'):?>
         <div class="p-6">
-        <h2 class="text-xl font-bold text-white mb-2">Project Details</h2>
+         <h2 class="text-xl font-bold text-white mb-2">Project Details</h2>
             <a href="?action=Description&id=<?=$id?>" class="flex items-center px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded-lg transition-colors">
                     Description du projet
                 </a>
@@ -17,6 +18,7 @@ $tags = new tag();
                 </a>
                 <a href="?action=googleSheet&id=<?=$id?>">Generate Google Sheet</a>
         </div>
+         <?php endif; ?>
         <div class="p-6">
             <h2 class="text-xl font-bold text-white mb-6">Projects</h2>
             <nav class="space-y-3">
@@ -57,18 +59,14 @@ $tags = new tag();
                     <div class="w-full flex justify-between">
                         <p class="text-sm font-medium text-white"><?=$member["name"]?></p>
                         <div>
-                        <?php foreach ($permissions as $permission): ?>
-                        <?php if ($permission['name'] === 'deleteTask'): ?>
+                            <?php if ($_SESSION['user_role'] == '1'  || $_SESSION['user_role'] == '2'):?>
                             <a href="?action=deleteUser&idUser=<?=$member["id"]?>&idProject=<?=$id?>" class="text-red-400 hover:text-red-300 transition-colors">
                                 <i class='bx bx-trash text-xl'></i>
                             </a>
-                            <?php endif;?>
-                            <?php if ($permission['name'] === 'editTask'): ?>
                             <a href="?action=editUserRole&idUser=<?=$member["id"]?>&idProject=<?=$id?>" class="text-blue-400 hover:text-blue-300 transition-colors">
                                 <i class='bx bxs-edit text-xl'></i>
                             </a>
                             <?php endif;?>
-                            <?php endforeach; ?>
                         </div>
                     </div>
                 </div>
