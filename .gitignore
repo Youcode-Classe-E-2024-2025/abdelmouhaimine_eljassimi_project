@@ -1,3 +1,6 @@
 /vendor
+# Ignore Google Cloud Service Account credentials file
 Credentials.json
+
+# Ignore Google OAuth credentials
 google-sheet.php
