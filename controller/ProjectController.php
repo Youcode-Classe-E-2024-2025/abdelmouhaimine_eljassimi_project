@@ -58,4 +58,8 @@ class ProjectController {
         $projects = $this->projectModel->GenerateSheet($id);
         require "google-sheet.php";
     }
+    public function dashboardPerso($id){
+        $dataPerso = $this->projectModel->GetDashboardPerso($id);
+        require "view/dashboardPerso.php";
+    }
 }

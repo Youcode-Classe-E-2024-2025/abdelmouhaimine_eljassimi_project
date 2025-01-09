@@ -83,6 +83,8 @@ if (!isset($_SESSION['user_email'])) {
                                 <?php $id = isset($_GET["id"]) ? $_GET["id"] : ''; ?>
                             <a href="?action=dashboard&id=<?=$id?>" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Dashboard</a>
                             <?php endif; ?>
+                                <?php $id = isset($_GET["id"]) ? $_GET["id"] : ''; ?>
+                            <a href="?action=dashboardPerso&id=<?=$id?>" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Personel Dashboard</a>
                             <?php if($_SESSION['user_role'] == '1' || $_SESSION['user_role'] == '2'): ?>
                             <a href="?action=permissions" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Permissions</a>
                             <?php endif; ?>

@@ -137,5 +137,15 @@ class Project {
         $stmt->execute(['id' => $id]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function GetDashboardPerso($id){
+        $sql = " SELECT * FROM activities  WHERE activities.project_id = :project_id  AND activities.user_id = :user_id";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([
+            ':project_id'=>$id,
+            ':user_id'=>$_SESSION["user_id"],
+        ]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
 ?>

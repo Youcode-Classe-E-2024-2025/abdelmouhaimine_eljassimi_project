@@ -65,9 +65,6 @@ switch ($action) {
         case "createTask":
             $project_id = $_GET["id"];
             if($_SERVER['REQUEST_METHOD'] === 'POST'){
-                if (!isset($_POST['csrf_token']) || !hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])) {
-                    die('CSRF token validation failed.');
-                }
                 $name = $_POST["name"];
                 $description = $_POST["description"];
                 $status = $_POST["status"];
@@ -186,5 +183,9 @@ switch ($action) {
             case "googleSheet" :
                 $id =$_GET["id"];
                 $projectController->googleSheet($id);
+                break;
+            case "dashboardPerso" : 
+                $id =$_GET["id"];
+                $projectController->dashboardPerso($id);
                 break;
 }
